@@ -5,15 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interface.Models;
 
-namespace Interface.Models
+namespace Interface.Helpers
 {
     public class Excel
     {
-        public List<Product> FileEXProduct()
+        public List<Product> FileEXProduct(string excelFilePath)
         {
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-            string excelFilePath = "D:\\Code\\Interface\\Excel\\Book1.xlsx";
+            //string excelFilePath = "D:\\Code\\Interface\\Excel\\Book1.xlsx";
 
             List<Product> products = new List<Product>();
 
@@ -32,7 +33,7 @@ namespace Interface.Models
                     product.ProductId = Convert.ToInt32(worksheet.Cells[row, 1].Value);
                     product.ProductName = worksheet.Cells[row, 2].Text;
                     product.Description = worksheet.Cells[row, 3].Text;
-                    product.Price = Convert.ToDecimal(worksheet.Cells[row, 4].Text);
+                    product.Price = double.Parse(worksheet.Cells[row, 4].Text);
                     product.StockQuantity = Convert.ToInt32(worksheet.Cells[row, 5].Text);
 
                     products.Add(product);

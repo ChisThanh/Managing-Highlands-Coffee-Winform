@@ -16,7 +16,7 @@ namespace Interface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ImportProduct());
+            Application.Run(new Main());
         }
     }
 }
