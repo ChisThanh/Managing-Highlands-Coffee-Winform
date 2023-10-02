@@ -13,33 +13,79 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Interface.Helpers;
 using System.Collections.ObjectModel;
+using System.Drawing.Printing;
+using System.Security.Cryptography;
 
 namespace Interface
 {
     public partial class ImportProduct : Form
     {
-        public List<Product> products = new List<Product>();
+        private List<Product> products = new List<Product>();
+        Supplier supplier = new Supplier();
+        List<Supplier> suppliers;
+        string total = "";
         public ImportProduct()
         {
             InitializeComponent();
+        }
+        private async void ImportProduct_Load(object sender, EventArgs e)
+        {
             //Excel excel = new Excel();
             //products = excel.FileEXProduct("D:\\Code\\Interface\\Excel\\Book1.xlsx");
             dataGirdView();
+            suppliers = await supplier.getAllTable();
+            guna2ComboBox1.DataSource = suppliers;
+            guna2ComboBox1.DisplayMember = "Name";
+            guna2ComboBox1.ValueMember = "Id";
+            if (guna2DataGridView1.RowCount == 0)
+            {
+                guna2Button1.Enabled = false;
+            }
         }
+        private void addRow(Product p)
+        {
+            int rowIndex = guna2DataGridView1.Rows.Add();
+            p.ProductId = rowIndex;
+            guna2DataGridView1.Rows[rowIndex].Cells["Column1"].Value = p.ProductId;
+            guna2DataGridView1.Rows[rowIndex].Cells["Column2"].Value = p.ProductName;
+            guna2DataGridView1.Rows[rowIndex].Cells["Column3"].Value = p.Price;
+            guna2DataGridView1.Rows[rowIndex].Cells["Column4"].Value = p.Quantity;
+            guna2DataGridView1.Rows[rowIndex].Cells["Column5"].Value = Image.FromFile(@"..\..\images\icons8-edit-50.png");
+            guna2DataGridView1.Rows[rowIndex].Cells["Column6"].Value = Image.FromFile(@"..\..\images\icons8-delete-60.png");
+        }
+        private void dataGirdView()
+        {
+            ClearDAGV();
+            foreach (var product in products)
+            {
+                addRow(product);
+            }
 
-        
+        }
+        private void ClearDAGV()
+        {
+            guna2DataGridView1.DataSource = null;
+            guna2DataGridView1.Rows.Clear();
+        }
+        private void guna2ComboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.RowCount <= 0 || guna2ComboBox1.SelectedItem == null)
+            {
+                return;
+            }
+            guna2Button1.Enabled = true;
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             var f = new CreateCart("Thêm");
             if (f.ShowDialog() == DialogResult.OK)
             {
                 Product newProduct = f.NewProduct;
+                newProduct.ProductId = guna2DataGridView1.RowCount;
                 products.Add(newProduct);
                 addRow(newProduct);
             }
         }
-
-      
         private void guna2Button7_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -52,13 +98,12 @@ namespace Interface
             {
                 string selectedFilePath = openFileDialog.FileName;
                 Excel excel = new Excel();
-                products = excel.FileEXProduct(selectedFilePath);
+                products.AddRange(excel.FileEXProduct(selectedFilePath));
+
                 dataGirdView();
             }
         }
-       
-
-        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void guna2DataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -81,7 +126,7 @@ namespace Interface
                             ProductId = productId,
                             ProductName = productName,
                             Price = price,
-                            StockQuantity = stockQuantity,
+                            Quantity = stockQuantity,
                         }));
 
                     if (f.ShowDialog() == DialogResult.OK)
@@ -92,10 +137,9 @@ namespace Interface
 
                         if (productToEdit != null)
                         {
-                            // Sửa thông tin sản phẩm
                             productToEdit.ProductName = newProduct.ProductName;
                             productToEdit.Price = newProduct.Price;
-                            productToEdit.StockQuantity = newProduct.StockQuantity;
+                            productToEdit.Quantity = newProduct.Quantity;
 
                             MessageBox.Show("Sản phẩm đã được sửa thành công!");
                             dataGirdView();
@@ -104,43 +148,124 @@ namespace Interface
                         {
                             MessageBox.Show("Lỗi");
                         }
-                       
+
                     }
 
-                   
+
                 }
-                else if (columnName == "Column6")
+               
+            }
+        }
+        private async void guna2Button3_Click(object sender, EventArgs e)
+        {
+            var f = new CreateSuppliers();
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                suppliers = await supplier.getAllTable();
+                guna2ComboBox1.DataSource = suppliers;
+            }
+        }
+        private async void guna2Button1_Click(object sender, EventArgs e)
+        {
+
+            PurchaseOrder pur = new PurchaseOrder();
+            Product product = new Product();
+            PurchaseOrderDetail pd = new PurchaseOrderDetail();
+
+            int SupID = (int)guna2ComboBox1.SelectedValue;
+
+            int OrderID = await pur.InsertPurchaseOrder(SupID, DateTime.Now.ToShortDateString(), this.total);
+
+            if (OrderID != -1)
+            {
+                foreach (Product item in products)
                 {
-                    DialogResult d = MessageBox.Show("Bạn có chắc chắn muốn xóa","Cảnh báo",MessageBoxButtons.OKCancel,MessageBoxIcon.Question);
-                    if (d == DialogResult.OK)
+                    bool isProductExists = await product.IsProductExists(item.ProductName);
+                    if (isProductExists)
                     {
-                        guna2DataGridView1.Rows.Remove(selectedRow);
+                        int ProductID = await product.GetProductIdByName(item.ProductName);
+                        bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
+                        if (!isInserted)
+                        {
+                            MessageBox.Show("Có lỗi khi thêm chi tiết đơn hàng.");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        int ProductID = await product.InsertProductAndGetId(item.ProductName, item.Description, item.Price, item.Quantity);
+                        if (ProductID != -1)
+                        {
+                            bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
+                            if (!isInserted)
+                            {
+                                MessageBox.Show("Có lỗi khi thêm chi tiết đơn hàng.");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Có lỗi khi thêm sản phẩm mới.");
+                            return;
+                        }
                     }
                 }
             }
+            MessageBox.Show("Thêm thành công", "Thông báo");
+            ClearDAGV();
+        }
+        private void guna2DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (!guna2Button1.Enabled)
+                guna2Button1.Enabled = true;
+            this.total = products.Sum(x => x.Price).ToString();
+
+            label2.Text = FormatCurrency.FormatAmount(int.Parse(this.total));
+        }
+        private void guna2DataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            if (guna2DataGridView1.RowCount == 0)
+            {
+                guna2Button1.Enabled = false;
+            }
+            this.total = products.Sum(x => x.Price).ToString();
+            label2.Text = FormatCurrency.FormatAmount(int.Parse(this.total));
+        }
+        private bool isDataGridViewValueChanged = false;
+        private void guna2DataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            isDataGridViewValueChanged = true;
+            if (isDataGridViewValueChanged)
+            {
+                this.total = products.Sum(x => x.Price).ToString();
+                label2.Text = FormatCurrency.FormatAmount(int.Parse(this.total));
+                isDataGridViewValueChanged = false;
+            }
+           
         }
 
-        private void addRow(Product p)
+        private void guna2DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = guna2DataGridView1.Rows.Add();
-            guna2DataGridView1.Rows[rowIndex].Cells["Column1"].Value = p.ProductId;
-            guna2DataGridView1.Rows[rowIndex].Cells["Column2"].Value = p.ProductName;
-            guna2DataGridView1.Rows[rowIndex].Cells["Column3"].Value = p.Price;
-            guna2DataGridView1.Rows[rowIndex].Cells["Column4"].Value = p.StockQuantity;
-            guna2DataGridView1.Rows[rowIndex].Cells["Column5"].Value = Image.FromFile(@"..\..\images\icons8-edit-50.png");
-            guna2DataGridView1.Rows[rowIndex].Cells["Column6"].Value = Image.FromFile(@"..\..\images\icons8-delete-60.png");
-        }
-        private void dataGirdView()
-        {
-            guna2DataGridView1.DataSource = null;
-            guna2DataGridView1.Rows.Clear();
-            foreach (var product in products)
+            string columnName = guna2DataGridView1.Columns[e.ColumnIndex].Name;
+            if (columnName == "Column6")
             {
-                addRow(product);
+                int selectedRowIndex = e.RowIndex;
+                DataGridViewCell selectedCell = guna2DataGridView1.Rows[selectedRowIndex].Cells[0];
+                string id = selectedCell.Value.ToString();
+
+
+                Product tmp = products.FirstOrDefault(i => i.ProductId == int.Parse(id));
+                products.Remove(tmp);
+
+                DialogResult d = MessageBox.Show("Bạn có chắc chắn muốn xóa", "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (d == DialogResult.OK)
+                {
+                    DataGridViewRow selectedRow = guna2DataGridView1.SelectedRows[0];
+                    guna2DataGridView1.Rows.Remove(selectedRow);
+                }
             }
 
         }
     }
-    
 }
 

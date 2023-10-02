@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interface.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,8 @@ namespace Interface
         {
             InitializeComponent();
             customSizePanel();
+            //ApplicationDbContext db = new ApplicationDbContext();
+            //db.getAllTable("product");
         }
         private void customSizePanel()
         {
@@ -32,15 +35,15 @@ namespace Interface
             if (panel2.Visible)
                 panel2.Visible = false;
         }
-        private void showSubMenu(Panel subMennu)
+        private void showSubMenu(Panel subMenu)
         {
-            if (!subMennu.Visible)
+            if (!subMenu.Visible)
             {
                 hideSubMenu();
-                subMennu.Visible = true;
+                subMenu.Visible = true;
             }
             else
-                subMennu.Visible = false;
+                subMenu.Visible = false;
         }
 
         private Form activeForm = null;
@@ -57,7 +60,6 @@ namespace Interface
             panelChildForm.Controls.Add(childForm);
             panelChildForm.Tag = childForm;
             childForm.BringToFront();
-            
             childForm.Show();
         }
 
@@ -81,6 +83,11 @@ namespace Interface
         {
             showSubMenu(panel2);
 
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            openChildForm(new ListPurchaseOrder());
         }
     }
 }

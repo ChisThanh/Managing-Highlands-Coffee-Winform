@@ -14,7 +14,6 @@ namespace Interface.Helpers
         public List<Product> FileEXProduct(string excelFilePath)
         {
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-            //string excelFilePath = "D:\\Code\\Interface\\Excel\\Book1.xlsx";
 
             List<Product> products = new List<Product>();
 
@@ -34,7 +33,7 @@ namespace Interface.Helpers
                     product.ProductName = worksheet.Cells[row, 2].Text;
                     product.Description = worksheet.Cells[row, 3].Text;
                     product.Price = double.Parse(worksheet.Cells[row, 4].Text);
-                    product.StockQuantity = Convert.ToInt32(worksheet.Cells[row, 5].Text);
+                    product.Quantity = Convert.ToInt32(worksheet.Cells[row, 5].Text);
 
                     products.Add(product);
                 }

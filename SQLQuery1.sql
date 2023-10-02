@@ -71,3 +71,35 @@ CREATE TABLE ProductTransfers (
     FOREIGN KEY (from_warehouse_id) REFERENCES Warehouses (warehouse_id),
     FOREIGN KEY (to_warehouse_id) REFERENCES Warehouses (warehouse_id)
 );
+
+--------------------------------------------------------------------------------------
+CREATE TABLE Suppliers (
+    supplier_id INT IDENTITY PRIMARY KEY,
+    supplier_name NVARCHAR(255) NOT NULL,
+    contact_email VARCHAR(255),
+    contact_phone VARCHAR(20)
+);
+
+
+
+CREATE TABLE Products (
+    product_id INT IDENTITY PRIMARY KEY,
+    product_name NVARCHAR(255) NOT NULL,
+    description TEXT NULL,
+    price FLOAT,
+    quantity INT NULL,
+);
+
+CREATE TABLE PurchaseOrders (
+    order_id INT IDENTITY PRIMARY KEY,
+    supplier_id INT,
+    order_date DATE,
+);
+
+CREATE TABLE PurchaseOrderDetails (
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    price FLOAT,
+	PRIMARY KEY (order_id,product_id)
+);
