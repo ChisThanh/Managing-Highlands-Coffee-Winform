@@ -89,5 +89,10 @@ namespace Interface
         {
             openChildForm(new ListPurchaseOrder());
         }
+
+        private void guna2Button8_Click(object sender, EventArgs e)
+        {
+            openChildForm(new Employee());
+        }
     }
 }

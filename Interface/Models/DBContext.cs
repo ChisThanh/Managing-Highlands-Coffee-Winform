@@ -17,6 +17,7 @@ namespace Interface.Models
                                         Database=highland;Uid=vudance;Pwd=Vudang0402;
                                         Encrypt=yes;TrustServerCertificate=no;
                                         Connection Timeout=30;";
+
         public DBContext() { }
         public async Task<bool> ExecuteQuery(string query)
         {
