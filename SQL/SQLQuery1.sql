@@ -103,3 +103,34 @@ CREATE TABLE PurchaseOrderDetails (
     price FLOAT,
 	PRIMARY KEY (order_id,product_id)
 );
+
+CREATE TABLE Warehouses (
+    warehouse_id INT PRIMARY KEY,
+    warehouse_name NVARCHAR(255) NOT NULL,
+    location NVARCHAR(255)
+);
+
+
+
+CREATE TABLE ProductTransfers (
+    transfer_id INT PRIMARY KEY,
+    from_warehouse_id INT,
+    to_warehouse_id INT,
+    transfer_date DATE,
+    FOREIGN KEY (from_warehouse_id) REFERENCES Warehouses (warehouse_id),
+    FOREIGN KEY (to_warehouse_id) REFERENCES Warehouses (warehouse_id)
+);
+
+CREATE TABLE ProductTransferDetails (
+	transfer_id INT,
+	product_id INT,
+	quantity INT,
+	PRIMARY KEY(transfer_id,product_id),
+	FOREIGN KEY (product_id) REFERENCES Products (product_id),
+);
+
+select p.product_name, d.quantity from Warehouses w
+join ProductTransfers t on w.warehouse_id = t.to_warehouse_id
+join ProductTransferDetails d on t.transfer_id = d.transfer_id
+join Products p on p.product_id = d.product_id
+where w.warehouse_id = 1

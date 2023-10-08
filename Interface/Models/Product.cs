@@ -14,10 +14,11 @@ namespace Interface.Models
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
         public int Quantity { get; set; }
+        public double Price { get; set; }
 
-        public async Task<int> InsertProductAndGetId(string productName, string description, double price, int Quantity)
+
+        public async Task<int> InsertProductAndGetId(string productName, string description)
         {
             int newProductId = -1;
 
@@ -27,14 +28,12 @@ namespace Interface.Models
                 {
                     await connection.OpenAsync();
 
-                    string insertQuery = "INSERT INTO Products (product_name, description, price, quantity) VALUES (?, ?, ?, ?); SELECT SCOPE_IDENTITY();";
+                    string insertQuery = "INSERT INTO Products (product_name, description) VALUES (?, ?); SELECT SCOPE_IDENTITY();";
 
                     using (OdbcCommand command = new OdbcCommand(insertQuery, connection))
                     {
                         command.Parameters.AddWithValue("?", productName);
                         command.Parameters.AddWithValue("?", description);
-                        command.Parameters.AddWithValue("?", price);
-                        command.Parameters.AddWithValue("?", Quantity);
 
                         newProductId = Convert.ToInt32(await command.ExecuteScalarAsync());
                     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Odbc;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,6 +122,38 @@ namespace Interface.Models
 
             return purchaseOrdersWithSupplierInfo;
         }
+
+        public async Task<bool> DeleteLastPurchaseOrder()
+        {
+            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            {
+                try
+                {
+                    await connection.OpenAsync();
+
+                    string findLastOrderIdQuery = "SELECT TOP 1 order_id FROM PurchaseOrders ORDER BY order_id DESC";
+                    using (OdbcCommand findLastOrderIdCommand = new OdbcCommand(findLastOrderIdQuery, connection))
+                    {
+                        int lastOrderId = (int)await findLastOrderIdCommand.ExecuteScalarAsync();
+
+                        string deleteLastOrderQuery = "DELETE FROM PurchaseOrders WHERE order_id = ?";
+                        using (OdbcCommand deleteLastOrderCommand = new OdbcCommand(deleteLastOrderQuery, connection))
+                        {
+                            deleteLastOrderCommand.Parameters.AddWithValue("?", lastOrderId);
+                            int rowsAffected = await deleteLastOrderCommand.ExecuteNonQueryAsync();
+
+                            return rowsAffected > 0;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+        }
+
 
     }
 }

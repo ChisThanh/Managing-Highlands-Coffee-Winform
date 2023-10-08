@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -154,6 +153,12 @@
     <Compile Include="Employee.Designer.cs">
       <DependentUpon>Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="FWarehousesDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FWarehousesDetail.Designer.cs">
+      <DependentUpon>FWarehousesDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="FPurchaseOrderDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +173,12 @@
       <DependentUpon>ImportProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Excel.cs" />
+    <Compile Include="ListWarehouses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListWarehouses.Designer.cs">
+      <DependentUpon>ListWarehouses.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListPurchaseOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +196,13 @@
     <Compile Include="Models\PurchaseOrder.cs" />
     <Compile Include="Models\PurchaseOrderDetail.cs" />
     <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\Warehouse.cs" />
+    <Compile Include="ProductTransfers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductTransfers.Designer.cs">
+      <DependentUpon>ProductTransfers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CreateCart.resx">
@@ -196,17 +214,26 @@
     <EmbeddedResource Include="Employee.resx">
       <DependentUpon>Employee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FWarehousesDetail.resx">
+      <DependentUpon>FWarehousesDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FPurchaseOrderDetail.resx">
       <DependentUpon>FPurchaseOrderDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportProduct.resx">
       <DependentUpon>ImportProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ListWarehouses.resx">
+      <DependentUpon>ListWarehouses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListPurchaseOrder.resx">
       <DependentUpon>ListPurchaseOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductTransfers.resx">
+      <DependentUpon>ProductTransfers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -243,8 +270,5 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    
-    
   </Target>
-  
 </Project>

@@ -1,5 +1,4 @@
-﻿using Guna.UI2.WinForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,13 +9,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Interface
 {
     public partial class Employee : Form
     {
-        private string conStr = "Data Source=highlanddb.database.windows.net;Initial Catalog=highland;User ID=vudance;Password=Vudang0402;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private string conStr = "Data Source=highlanddb.database.windows.net;" +
+                                "Initial Catalog=highland;User ID=vudance;" +
+                                "Password=Vudang0402;" +
+                                "Connect Timeout=60;" +
+                                "Encrypt=True;" +
+                                "TrustServerCertificate=False;" +
+                                "TrustServerCertificate=False;" +
+                                "ApplicationIntent=ReadWrite;" +
+                                "MultiSubnetFailover=False";
         public Employee()
         {
             InitializeComponent();

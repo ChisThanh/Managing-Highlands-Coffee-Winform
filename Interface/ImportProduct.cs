@@ -15,6 +15,7 @@ using Interface.Helpers;
 using System.Collections.ObjectModel;
 using System.Drawing.Printing;
 using System.Security.Cryptography;
+using System.Data.SqlClient;
 
 namespace Interface
 {
@@ -171,6 +172,8 @@ namespace Interface
             PurchaseOrder pur = new PurchaseOrder();
             Product product = new Product();
             PurchaseOrderDetail pd = new PurchaseOrderDetail();
+            Warehouse warehouse = new Warehouse();
+
 
             int SupID = (int)guna2ComboBox1.SelectedValue;
 
@@ -185,6 +188,9 @@ namespace Interface
                     {
                         int ProductID = await product.GetProductIdByName(item.ProductName);
                         bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
+
+                        await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
+
                         if (!isInserted)
                         {
                             MessageBox.Show("Có lỗi khi thêm chi tiết đơn hàng.");
@@ -193,10 +199,12 @@ namespace Interface
                     }
                     else
                     {
-                        int ProductID = await product.InsertProductAndGetId(item.ProductName, item.Description, item.Price, item.Quantity);
+                        int ProductID = await product.InsertProductAndGetId(item.ProductName, "");
                         if (ProductID != -1)
                         {
                             bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
+
+                            await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
                             if (!isInserted)
                             {
                                 MessageBox.Show("Có lỗi khi thêm chi tiết đơn hàng.");
@@ -205,6 +213,7 @@ namespace Interface
                         }
                         else
                         {
+                            await pur.DeleteLastPurchaseOrder();
                             MessageBox.Show("Có lỗi khi thêm sản phẩm mới.");
                             return;
                         }

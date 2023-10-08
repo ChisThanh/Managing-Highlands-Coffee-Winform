@@ -43,7 +43,6 @@ namespace Interface
                 ProductName = guna2TextBox1.Text,
                 Price = double.Parse(guna2TextBox3.Text),
                 Quantity = int.Parse(guna2TextBox2.Text),
-                Description= guna2TextBox4.Text
             };
             NewProduct = tmp;
             this.DialogResult = DialogResult.OK;
