@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Odbc;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Forms;
 
-namespace Interface.Models
+namespace DataPlayer
 {
     public class DBContext
     {

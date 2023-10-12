@@ -1,31 +1,20 @@
-﻿using Guna.UI2.WinForms;
-using Interface.Models;
-using OfficeOpenXml;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataPlayer;
 using Interface.Helpers;
-using System.Collections.ObjectModel;
-using System.Drawing.Printing;
-using System.Security.Cryptography;
-using System.Data.SqlClient;
 
 namespace Interface
 {
-    public partial class ImportProduct : Form
+    public partial class ImportPurchaseOrder : Form
     {
         private List<Product> products = new List<Product>();
         Supplier supplier = new Supplier();
         List<Supplier> suppliers;
         string total = "";
-        public ImportProduct()
+        public ImportPurchaseOrder()
         {
             InitializeComponent();
         }
@@ -34,6 +23,7 @@ namespace Interface
             //Excel excel = new Excel();
             //products = excel.FileEXProduct("D:\\Code\\Interface\\Excel\\Book1.xlsx");
             dataGirdView();
+
             suppliers = await supplier.getAllTable();
             guna2ComboBox1.DataSource = suppliers;
             guna2ComboBox1.DisplayMember = "Name";
@@ -168,7 +158,8 @@ namespace Interface
         }
         private async void guna2Button1_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Thêm thành công", "Thông báo");
+            ClearDAGV();
             PurchaseOrder pur = new PurchaseOrder();
             Product product = new Product();
             PurchaseOrderDetail pd = new PurchaseOrderDetail();
@@ -189,7 +180,11 @@ namespace Interface
                         int ProductID = await product.GetProductIdByName(item.ProductName);
                         bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
 
-                        await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
+                        bool checkProduct = await warehouse.isProductInWarehouse(ProductID);
+                        if (checkProduct)
+                            await warehouse.UpdateProductInWarehouse(ProductID, item.Quantity);
+                        else
+                            await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
 
                         if (!isInserted)
                         {
@@ -204,7 +199,11 @@ namespace Interface
                         {
                             bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
 
-                            await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
+                            bool checkProduct = await warehouse.isProductInWarehouse(ProductID);
+                            if (checkProduct)
+                                await warehouse.UpdateProductInWarehouse(ProductID, item.Quantity);
+                            else
+                                await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
                             if (!isInserted)
                             {
                                 MessageBox.Show("Có lỗi khi thêm chi tiết đơn hàng.");
@@ -220,8 +219,7 @@ namespace Interface
                     }
                 }
             }
-            MessageBox.Show("Thêm thành công", "Thông báo");
-            ClearDAGV();
+            
         }
         private void guna2DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {

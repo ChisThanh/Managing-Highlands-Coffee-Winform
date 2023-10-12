@@ -1,18 +1,16 @@
-﻿using OfficeOpenXml;
-using System;
+﻿using DataPlayer;
+using OfficeOpenXml;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Interface.Models;
-
+using System;
 namespace Interface.Helpers
 {
     public class Excel
     {
+        public Excel() { }
         public List<Product> FileEXProduct(string excelFilePath)
         {
+
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
             List<Product> products = new List<Product>();

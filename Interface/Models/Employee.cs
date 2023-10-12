@@ -12,20 +12,22 @@ namespace Interface.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Supplier
+    public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supplier()
+        public Employee()
         {
-            this.PurchaseOrders = new HashSet<PurchaseOrder>();
+            this.OrderPDs = new HashSet<OrderPD>();
         }
     
-        public int supplier_id { get; set; }
-        public string supplier_name { get; set; }
-        public string contact_email { get; set; }
-        public string contact_phone { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public byte[] Avatar { get; set; }
+        public Nullable<int> Age { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public string Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual ICollection<OrderPD> OrderPDs { get; set; }
     }
 }

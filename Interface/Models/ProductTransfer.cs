@@ -12,20 +12,22 @@ namespace Interface.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Supplier
+    public partial class ProductTransfer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Supplier()
+        public ProductTransfer()
         {
-            this.PurchaseOrders = new HashSet<PurchaseOrder>();
+            this.ProductTransferDetails = new HashSet<ProductTransferDetail>();
         }
     
-        public int supplier_id { get; set; }
-        public string supplier_name { get; set; }
-        public string contact_email { get; set; }
-        public string contact_phone { get; set; }
+        public int transfer_id { get; set; }
+        public Nullable<int> from_warehouse_id { get; set; }
+        public Nullable<int> to_warehouse_id { get; set; }
+        public Nullable<System.DateTime> transfer_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual ICollection<ProductTransferDetail> ProductTransferDetails { get; set; }
+        public virtual Warehouse Warehouse { get; set; }
+        public virtual Warehouse Warehouse1 { get; set; }
     }
 }

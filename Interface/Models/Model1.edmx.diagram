@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e9fbd38b3d9443086f80d7fe3167d16" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="highlandModel.Employee" Width="1.5" PointX="4.25" PointY="14.75" />
+        <EntityTypeShape EntityType="highlandModel.OrderPD" Width="1.5" PointX="8.625" PointY="14.75" />
+        <EntityTypeShape EntityType="highlandModel.Payment" Width="1.5" PointX="8.5" PointY="18.625" />
+        <EntityTypeShape EntityType="highlandModel.ProcessedFood" Width="1.5" PointX="7.875" PointY="11.75" />
+        <EntityTypeShape EntityType="highlandModel.Product" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="highlandModel.ProductTransferDetail" Width="1.5" PointX="5.25" PointY="1.125" />
+        <EntityTypeShape EntityType="highlandModel.ProductTransfer" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="highlandModel.PurchaseOrderDetail" Width="1.5" PointX="13.25" PointY="7" />
+        <EntityTypeShape EntityType="highlandModel.PurchaseOrder" Width="1.5" PointX="10" PointY="8.875" />
+        <EntityTypeShape EntityType="highlandModel.Supplier" Width="1.5" PointX="7.75" PointY="9" />
+        <EntityTypeShape EntityType="highlandModel.TableSalary" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="highlandModel.Warehouse" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="highlandModel.FK_OrderPD_Payment" />
+        <AssociationConnector Association="highlandModel.FK__ProductTr__produ__40F9A68C" />
+        <AssociationConnector Association="highlandModel.FK_PurchaseOrderDetails_Products" />
+        <AssociationConnector Association="highlandModel.FK_ProductTransferDetails_ProductTransfers" />
+        <AssociationConnector Association="highlandModel.FK_ProductTransfers_Warehouses" />
+        <AssociationConnector Association="highlandModel.FK_ProductTransfers_Warehouses1" />
+        <AssociationConnector Association="highlandModel.FK_PurchaseOrderDetails_PurchaseOrders" />
+        <AssociationConnector Association="highlandModel.FK_PurchaseOrders_Suppliers" />
+        <EntityTypeShape EntityType="highlandModel.OrderDetail" Width="1.5" PointX="11.125" PointY="15.125" />
+        <AssociationConnector Association="highlandModel.FK_OrderPD_Employee" />
+        <AssociationConnector Association="highlandModel.FK_OrderDetails_OrderPD" />
+        <AssociationConnector Association="highlandModel.FK_OrderDetails_ProcessedFood" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -35,7 +35,7 @@ namespace Interface
                 {
                     await connection.OpenAsync();
 
-                    string query = "SELECT * FROM Employee";
+                    string query = "SELECT top 3 * FROM Employee";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable dataTable = new DataTable();
                     await Task.Run(() => adapter.Fill(dataTable));

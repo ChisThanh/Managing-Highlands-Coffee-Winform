@@ -1,0 +1,910 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="highlandModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+          <Property Name="Avatar" Type="image" />
+          <Property Name="Age" Type="int" />
+          <Property Name="CreatedAt" Type="date" />
+          <Property Name="Role" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderPD">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="Total" Type="float" />
+          <Property Name="OrderStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaymentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" Nullable="false" />
+          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="PaymentDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProcessedFood">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Image" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="text" />
+        </EntityType>
+        <EntityType Name="ProductTransferDetails">
+          <Key>
+            <PropertyRef Name="transfer_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="transfer_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductTransfers">
+          <Key>
+            <PropertyRef Name="transfer_id" />
+          </Key>
+          <Property Name="transfer_id" Type="int" Nullable="false" />
+          <Property Name="from_warehouse_id" Type="int" />
+          <Property Name="to_warehouse_id" Type="int" />
+          <Property Name="transfer_date" Type="date" />
+        </EntityType>
+        <EntityType Name="PurchaseOrderDetails">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="price" Type="float" />
+        </EntityType>
+        <EntityType Name="PurchaseOrders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplier_id" Type="int" />
+          <Property Name="order_date" Type="date" />
+          <Property Name="total" Type="int" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supplier_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="contact_email" Type="varchar" MaxLength="255" />
+          <Property Name="contact_phone" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TableSalary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="50" />
+          <Property Name="D1" Type="nchar" MaxLength="10" />
+          <Property Name="D2" Type="nchar" MaxLength="10" />
+          <Property Name="D3" Type="nchar" MaxLength="10" />
+          <Property Name="D4" Type="nchar" MaxLength="10" />
+          <Property Name="D5" Type="nchar" MaxLength="10" />
+          <Property Name="D6" Type="nchar" MaxLength="10" />
+          <Property Name="D7" Type="nchar" MaxLength="10" />
+          <Property Name="D8" Type="nchar" MaxLength="10" />
+          <Property Name="D9" Type="nchar" MaxLength="10" />
+          <Property Name="D10" Type="nchar" MaxLength="10" />
+          <Property Name="D11" Type="nchar" MaxLength="10" />
+          <Property Name="D12" Type="nchar" MaxLength="10" />
+          <Property Name="D13" Type="nchar" MaxLength="10" />
+          <Property Name="D14" Type="nchar" MaxLength="10" />
+          <Property Name="D15" Type="nchar" MaxLength="10" />
+          <Property Name="D16" Type="nchar" MaxLength="10" />
+          <Property Name="D17" Type="nchar" MaxLength="10" />
+          <Property Name="D18" Type="nchar" MaxLength="10" />
+          <Property Name="D19" Type="nchar" MaxLength="10" />
+          <Property Name="D20" Type="nchar" MaxLength="10" />
+          <Property Name="D21" Type="nchar" MaxLength="10" />
+          <Property Name="D22" Type="nchar" MaxLength="10" />
+          <Property Name="D23" Type="nchar" MaxLength="10" />
+          <Property Name="D24" Type="nchar" MaxLength="10" />
+          <Property Name="D25" Type="nchar" MaxLength="10" />
+          <Property Name="D26" Type="nchar" MaxLength="10" />
+          <Property Name="D27" Type="nchar" MaxLength="10" />
+          <Property Name="D28" Type="nchar" MaxLength="10" />
+          <Property Name="D29" Type="nchar" MaxLength="10" />
+          <Property Name="D30" Type="nchar" MaxLength="10" />
+          <Property Name="D31" Type="nchar" MaxLength="10" />
+          <Property Name="Year" Type="int" />
+          <Property Name="Month" Type="int" />
+        </EntityType>
+        <EntityType Name="Warehouses">
+          <Key>
+            <PropertyRef Name="warehouse_id" />
+          </Key>
+          <Property Name="warehouse_id" Type="int" Nullable="false" />
+          <Property Name="warehouse_name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK__ProductTr__produ__40F9A68C">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductTransferDetails" Type="Self.ProductTransferDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="ProductTransferDetails">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_OrderPD">
+          <End Role="OrderPD" Type="Self.OrderPD" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPD">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_ProcessedFood">
+          <End Role="ProcessedFood" Type="Self.ProcessedFood" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessedFood">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderPD_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="OrderPD" Type="Self.OrderPD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderPD">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderPD_Payment">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="0..1" />
+          <End Role="OrderPD" Type="Self.OrderPD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="OrderPD">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTransferDetails_ProductTransfers">
+          <End Role="ProductTransfers" Type="Self.ProductTransfers" Multiplicity="1" />
+          <End Role="ProductTransferDetails" Type="Self.ProductTransferDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTransfers">
+              <PropertyRef Name="transfer_id" />
+            </Principal>
+            <Dependent Role="ProductTransferDetails">
+              <PropertyRef Name="transfer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTransfers_Warehouses">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="0..1" />
+          <End Role="ProductTransfers" Type="Self.ProductTransfers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="warehouse_id" />
+            </Principal>
+            <Dependent Role="ProductTransfers">
+              <PropertyRef Name="from_warehouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTransfers_Warehouses1">
+          <End Role="Warehouses" Type="Self.Warehouses" Multiplicity="0..1" />
+          <End Role="ProductTransfers" Type="Self.ProductTransfers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouses">
+              <PropertyRef Name="warehouse_id" />
+            </Principal>
+            <Dependent Role="ProductTransfers">
+              <PropertyRef Name="to_warehouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetails_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="PurchaseOrderDetails" Type="Self.PurchaseOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetails">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetails_PurchaseOrders">
+          <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="1" />
+          <End Role="PurchaseOrderDetails" Type="Self.PurchaseOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrders">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetails">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrders_Suppliers">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1" />
+          <End Role="PurchaseOrders" Type="Self.PurchaseOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="PurchaseOrders">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="highlandModelStoreContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderPD" EntityType="Self.OrderPD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessedFood" EntityType="Self.ProcessedFood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTransferDetails" EntityType="Self.ProductTransferDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductTransfers" EntityType="Self.ProductTransfers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderDetails" EntityType="Self.PurchaseOrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableSalary" EntityType="Self.TableSalary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouses" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ProductTr__produ__40F9A68C" Association="Self.FK__ProductTr__produ__40F9A68C">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductTransferDetails" EntitySet="ProductTransferDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_OrderPD" Association="Self.FK_OrderDetails_OrderPD">
+            <End Role="OrderPD" EntitySet="OrderPD" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_ProcessedFood" Association="Self.FK_OrderDetails_ProcessedFood">
+            <End Role="ProcessedFood" EntitySet="ProcessedFood" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderPD_Employee" Association="Self.FK_OrderPD_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="OrderPD" EntitySet="OrderPD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderPD_Payment" Association="Self.FK_OrderPD_Payment">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="OrderPD" EntitySet="OrderPD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTransferDetails_ProductTransfers" Association="Self.FK_ProductTransferDetails_ProductTransfers">
+            <End Role="ProductTransfers" EntitySet="ProductTransfers" />
+            <End Role="ProductTransferDetails" EntitySet="ProductTransferDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTransfers_Warehouses" Association="Self.FK_ProductTransfers_Warehouses">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="ProductTransfers" EntitySet="ProductTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTransfers_Warehouses1" Association="Self.FK_ProductTransfers_Warehouses1">
+            <End Role="Warehouses" EntitySet="Warehouses" />
+            <End Role="ProductTransfers" EntitySet="ProductTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetails_Products" Association="Self.FK_PurchaseOrderDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="PurchaseOrderDetails" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetails_PurchaseOrders" Association="Self.FK_PurchaseOrderDetails_PurchaseOrders">
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+            <End Role="PurchaseOrderDetails" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrders_Suppliers" Association="Self.FK_PurchaseOrders_Suppliers">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="PurchaseOrders" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="highlandModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HighlandEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="highlandModel.Employee" />
+          <EntitySet Name="OrderPDs" EntityType="highlandModel.OrderPD" />
+          <EntitySet Name="Payments" EntityType="highlandModel.Payment" />
+          <EntitySet Name="ProcessedFoods" EntityType="highlandModel.ProcessedFood" />
+          <EntitySet Name="Products" EntityType="highlandModel.Product" />
+          <EntitySet Name="ProductTransferDetails" EntityType="highlandModel.ProductTransferDetail" />
+          <EntitySet Name="ProductTransfers" EntityType="highlandModel.ProductTransfer" />
+          <EntitySet Name="PurchaseOrderDetails" EntityType="highlandModel.PurchaseOrderDetail" />
+          <EntitySet Name="PurchaseOrders" EntityType="highlandModel.PurchaseOrder" />
+          <EntitySet Name="Suppliers" EntityType="highlandModel.Supplier" />
+          <EntitySet Name="TableSalaries" EntityType="highlandModel.TableSalary" />
+          <EntitySet Name="Warehouses" EntityType="highlandModel.Warehouse" />
+          <AssociationSet Name="FK_OrderPD_Payment" Association="highlandModel.FK_OrderPD_Payment">
+            <End Role="Payment" EntitySet="Payments" />
+            <End Role="OrderPD" EntitySet="OrderPDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductTr__produ__40F9A68C" Association="highlandModel.FK__ProductTr__produ__40F9A68C">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductTransferDetail" EntitySet="ProductTransferDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetails_Products" Association="highlandModel.FK_PurchaseOrderDetails_Products">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTransferDetails_ProductTransfers" Association="highlandModel.FK_ProductTransferDetails_ProductTransfers">
+            <End Role="ProductTransfer" EntitySet="ProductTransfers" />
+            <End Role="ProductTransferDetail" EntitySet="ProductTransferDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTransfers_Warehouses" Association="highlandModel.FK_ProductTransfers_Warehouses">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="ProductTransfer" EntitySet="ProductTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTransfers_Warehouses1" Association="highlandModel.FK_ProductTransfers_Warehouses1">
+            <End Role="Warehouse" EntitySet="Warehouses" />
+            <End Role="ProductTransfer" EntitySet="ProductTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetails_PurchaseOrders" Association="highlandModel.FK_PurchaseOrderDetails_PurchaseOrders">
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+            <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrders_Suppliers" Association="highlandModel.FK_PurchaseOrders_Suppliers">
+            <End Role="Supplier" EntitySet="Suppliers" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+          <EntitySet Name="OrderDetails" EntityType="highlandModel.OrderDetail" />
+          <AssociationSet Name="FK_OrderPD_Employee" Association="highlandModel.FK_OrderPD_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="OrderPD" EntitySet="OrderPDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_OrderPD" Association="highlandModel.FK_OrderDetails_OrderPD">
+            <End Role="OrderPD" EntitySet="OrderPDs" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_ProcessedFood" Association="highlandModel.FK_OrderDetails_ProcessedFood">
+            <End Role="ProcessedFood" EntitySet="ProcessedFoods" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Avatar" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="0" />
+          <Property Name="Role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="OrderPDs" Relationship="highlandModel.FK_OrderPD_Employee" FromRole="Employee" ToRole="OrderPD" />
+        </EntityType>
+        <EntityType Name="OrderPD">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentID" Type="Int32" />
+          <NavigationProperty Name="Payment" Relationship="highlandModel.FK_OrderPD_Payment" FromRole="OrderPD" ToRole="Payment" />
+          <NavigationProperty Name="Employee" Relationship="highlandModel.FK_OrderPD_Employee" FromRole="OrderPD" ToRole="Employee" />
+          <NavigationProperty Name="OrderDetails" Relationship="highlandModel.FK_OrderDetails_OrderPD" FromRole="OrderPD" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OrderPDs" Relationship="highlandModel.FK_OrderPD_Payment" FromRole="Payment" ToRole="OrderPD" />
+        </EntityType>
+        <EntityType Name="ProcessedFood">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Double" />
+          <NavigationProperty Name="OrderDetails" Relationship="highlandModel.FK_OrderDetails_ProcessedFood" FromRole="ProcessedFood" ToRole="OrderDetail" />
+          <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductTransferDetails" Relationship="highlandModel.FK__ProductTr__produ__40F9A68C" FromRole="Product" ToRole="ProductTransferDetail" />
+          <NavigationProperty Name="PurchaseOrderDetails" Relationship="highlandModel.FK_PurchaseOrderDetails_Products" FromRole="Product" ToRole="PurchaseOrderDetail" />
+        </EntityType>
+        <EntityType Name="ProductTransferDetail">
+          <Key>
+            <PropertyRef Name="transfer_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="transfer_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="highlandModel.FK__ProductTr__produ__40F9A68C" FromRole="ProductTransferDetail" ToRole="Product" />
+          <NavigationProperty Name="ProductTransfer" Relationship="highlandModel.FK_ProductTransferDetails_ProductTransfers" FromRole="ProductTransferDetail" ToRole="ProductTransfer" />
+        </EntityType>
+        <EntityType Name="ProductTransfer">
+          <Key>
+            <PropertyRef Name="transfer_id" />
+          </Key>
+          <Property Name="transfer_id" Type="Int32" Nullable="false" />
+          <Property Name="from_warehouse_id" Type="Int32" />
+          <Property Name="to_warehouse_id" Type="Int32" />
+          <Property Name="transfer_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ProductTransferDetails" Relationship="highlandModel.FK_ProductTransferDetails_ProductTransfers" FromRole="ProductTransfer" ToRole="ProductTransferDetail" />
+          <NavigationProperty Name="Warehouse" Relationship="highlandModel.FK_ProductTransfers_Warehouses" FromRole="ProductTransfer" ToRole="Warehouse" />
+          <NavigationProperty Name="Warehouse1" Relationship="highlandModel.FK_ProductTransfers_Warehouses1" FromRole="ProductTransfer" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="PurchaseOrderDetail">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="price" Type="Double" />
+          <NavigationProperty Name="Product" Relationship="highlandModel.FK_PurchaseOrderDetails_Products" FromRole="PurchaseOrderDetail" ToRole="Product" />
+          <NavigationProperty Name="PurchaseOrder" Relationship="highlandModel.FK_PurchaseOrderDetails_PurchaseOrders" FromRole="PurchaseOrderDetail" ToRole="PurchaseOrder" />
+        </EntityType>
+        <EntityType Name="PurchaseOrder">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplier_id" Type="Int32" />
+          <Property Name="order_date" Type="DateTime" Precision="0" />
+          <Property Name="total" Type="Int32" />
+          <NavigationProperty Name="PurchaseOrderDetails" Relationship="highlandModel.FK_PurchaseOrderDetails_PurchaseOrders" FromRole="PurchaseOrder" ToRole="PurchaseOrderDetail" />
+          <NavigationProperty Name="Supplier" Relationship="highlandModel.FK_PurchaseOrders_Suppliers" FromRole="PurchaseOrder" ToRole="Supplier" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplier_id" />
+          </Key>
+          <Property Name="supplier_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supplier_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="contact_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="contact_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="highlandModel.FK_PurchaseOrders_Suppliers" FromRole="Supplier" ToRole="PurchaseOrder" />
+        </EntityType>
+        <EntityType Name="TableSalary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="D1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D3" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D4" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D5" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D6" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D7" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D8" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D9" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D10" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D11" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D12" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D13" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D14" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D15" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D16" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D17" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D18" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D19" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D20" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D21" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D22" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D23" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D24" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D25" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D26" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D27" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D28" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D29" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D30" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="D31" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Year" Type="Int32" />
+          <Property Name="Month" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="warehouse_id" />
+          </Key>
+          <Property Name="warehouse_id" Type="Int32" Nullable="false" />
+          <Property Name="warehouse_name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductTransfers" Relationship="highlandModel.FK_ProductTransfers_Warehouses" FromRole="Warehouse" ToRole="ProductTransfer" />
+          <NavigationProperty Name="ProductTransfers1" Relationship="highlandModel.FK_ProductTransfers_Warehouses1" FromRole="Warehouse" ToRole="ProductTransfer" />
+        </EntityType>
+        <Association Name="FK_OrderPD_Payment">
+          <End Type="highlandModel.Payment" Role="Payment" Multiplicity="0..1" />
+          <End Type="highlandModel.OrderPD" Role="OrderPD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="PaymentID" />
+            </Principal>
+            <Dependent Role="OrderPD">
+              <PropertyRef Name="PaymentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductTr__produ__40F9A68C">
+          <End Type="highlandModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="highlandModel.ProductTransferDetail" Role="ProductTransferDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="ProductTransferDetail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetails_Products">
+          <End Type="highlandModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="highlandModel.PurchaseOrderDetail" Role="PurchaseOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTransferDetails_ProductTransfers">
+          <End Type="highlandModel.ProductTransfer" Role="ProductTransfer" Multiplicity="1" />
+          <End Type="highlandModel.ProductTransferDetail" Role="ProductTransferDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductTransfer">
+              <PropertyRef Name="transfer_id" />
+            </Principal>
+            <Dependent Role="ProductTransferDetail">
+              <PropertyRef Name="transfer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTransfers_Warehouses">
+          <End Type="highlandModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="highlandModel.ProductTransfer" Role="ProductTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="warehouse_id" />
+            </Principal>
+            <Dependent Role="ProductTransfer">
+              <PropertyRef Name="from_warehouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTransfers_Warehouses1">
+          <End Type="highlandModel.Warehouse" Role="Warehouse" Multiplicity="0..1" />
+          <End Type="highlandModel.ProductTransfer" Role="ProductTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="warehouse_id" />
+            </Principal>
+            <Dependent Role="ProductTransfer">
+              <PropertyRef Name="to_warehouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetails_PurchaseOrders">
+          <End Type="highlandModel.PurchaseOrder" Role="PurchaseOrder" Multiplicity="1" />
+          <End Type="highlandModel.PurchaseOrderDetail" Role="PurchaseOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrder">
+              <PropertyRef Name="order_id" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetail">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrders_Suppliers">
+          <End Type="highlandModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+          <End Type="highlandModel.PurchaseOrder" Role="PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplier_id" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="supplier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Quantity" Type="Int32" />
+          <NavigationProperty Name="OrderPD" Relationship="highlandModel.FK_OrderDetails_OrderPD" FromRole="OrderDetail" ToRole="OrderPD" />
+          <NavigationProperty Name="ProcessedFood" Relationship="highlandModel.FK_OrderDetails_ProcessedFood" FromRole="OrderDetail" ToRole="ProcessedFood" />
+        </EntityType>
+        <Association Name="FK_OrderPD_Employee">
+          <End Type="highlandModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="highlandModel.OrderPD" Role="OrderPD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderPD">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_OrderPD">
+          <End Type="highlandModel.OrderPD" Role="OrderPD" Multiplicity="1" />
+          <End Type="highlandModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPD">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_ProcessedFood">
+          <End Type="highlandModel.ProcessedFood" Role="ProcessedFood" Multiplicity="1" />
+          <End Type="highlandModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessedFood">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="highlandModelStoreContainer" CdmEntityContainer="HighlandEntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="highlandModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderPDs">
+            <EntityTypeMapping TypeName="highlandModel.OrderPD">
+              <MappingFragment StoreEntitySet="OrderPD">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="highlandModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessedFoods">
+            <EntityTypeMapping TypeName="highlandModel.ProcessedFood">
+              <MappingFragment StoreEntitySet="ProcessedFood">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="highlandModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTransferDetails">
+            <EntityTypeMapping TypeName="highlandModel.ProductTransferDetail">
+              <MappingFragment StoreEntitySet="ProductTransferDetails">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="transfer_id" ColumnName="transfer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTransfers">
+            <EntityTypeMapping TypeName="highlandModel.ProductTransfer">
+              <MappingFragment StoreEntitySet="ProductTransfers">
+                <ScalarProperty Name="transfer_date" ColumnName="transfer_date" />
+                <ScalarProperty Name="to_warehouse_id" ColumnName="to_warehouse_id" />
+                <ScalarProperty Name="from_warehouse_id" ColumnName="from_warehouse_id" />
+                <ScalarProperty Name="transfer_id" ColumnName="transfer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrderDetails">
+            <EntityTypeMapping TypeName="highlandModel.PurchaseOrderDetail">
+              <MappingFragment StoreEntitySet="PurchaseOrderDetails">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrders">
+            <EntityTypeMapping TypeName="highlandModel.PurchaseOrder">
+              <MappingFragment StoreEntitySet="PurchaseOrders">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="highlandModel.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+                <ScalarProperty Name="contact_email" ColumnName="contact_email" />
+                <ScalarProperty Name="supplier_name" ColumnName="supplier_name" />
+                <ScalarProperty Name="supplier_id" ColumnName="supplier_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableSalaries">
+            <EntityTypeMapping TypeName="highlandModel.TableSalary">
+              <MappingFragment StoreEntitySet="TableSalary">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="D31" ColumnName="D31" />
+                <ScalarProperty Name="D30" ColumnName="D30" />
+                <ScalarProperty Name="D29" ColumnName="D29" />
+                <ScalarProperty Name="D28" ColumnName="D28" />
+                <ScalarProperty Name="D27" ColumnName="D27" />
+                <ScalarProperty Name="D26" ColumnName="D26" />
+                <ScalarProperty Name="D25" ColumnName="D25" />
+                <ScalarProperty Name="D24" ColumnName="D24" />
+                <ScalarProperty Name="D23" ColumnName="D23" />
+                <ScalarProperty Name="D22" ColumnName="D22" />
+                <ScalarProperty Name="D21" ColumnName="D21" />
+                <ScalarProperty Name="D20" ColumnName="D20" />
+                <ScalarProperty Name="D19" ColumnName="D19" />
+                <ScalarProperty Name="D18" ColumnName="D18" />
+                <ScalarProperty Name="D17" ColumnName="D17" />
+                <ScalarProperty Name="D16" ColumnName="D16" />
+                <ScalarProperty Name="D15" ColumnName="D15" />
+                <ScalarProperty Name="D14" ColumnName="D14" />
+                <ScalarProperty Name="D13" ColumnName="D13" />
+                <ScalarProperty Name="D12" ColumnName="D12" />
+                <ScalarProperty Name="D11" ColumnName="D11" />
+                <ScalarProperty Name="D10" ColumnName="D10" />
+                <ScalarProperty Name="D9" ColumnName="D9" />
+                <ScalarProperty Name="D8" ColumnName="D8" />
+                <ScalarProperty Name="D7" ColumnName="D7" />
+                <ScalarProperty Name="D6" ColumnName="D6" />
+                <ScalarProperty Name="D5" ColumnName="D5" />
+                <ScalarProperty Name="D4" ColumnName="D4" />
+                <ScalarProperty Name="D3" ColumnName="D3" />
+                <ScalarProperty Name="D2" ColumnName="D2" />
+                <ScalarProperty Name="D1" ColumnName="D1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="highlandModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouses">
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="warehouse_name" ColumnName="warehouse_name" />
+                <ScalarProperty Name="warehouse_id" ColumnName="warehouse_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="highlandModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

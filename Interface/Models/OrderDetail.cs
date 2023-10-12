@@ -12,14 +12,14 @@ namespace Interface.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PurchaseOrderDetail
+    public partial class OrderDetail
     {
-        public int order_id { get; set; }
-        public int product_id { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<double> price { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
+        public Nullable<double> Price { get; set; }
+        public Nullable<int> Quantity { get; set; }
     
-        public virtual Product Product { get; set; }
-        public virtual PurchaseOrder PurchaseOrder { get; set; }
+        public virtual OrderPD OrderPD { get; set; }
+        public virtual ProcessedFood ProcessedFood { get; set; }
     }
 }
