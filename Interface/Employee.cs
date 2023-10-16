@@ -301,5 +301,12 @@ namespace Interface
 
         }
 
-       }
+        private void guna2Button4_Click_1(object sender, EventArgs e)
+        {
+            TableSalaryEmployee tableSalaryForm = new TableSalaryEmployee();
+
+            // Hiển thị form TableSalary
+            tableSalaryForm.Show();
+        }
+    }
 }

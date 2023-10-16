@@ -49,5 +49,10 @@ namespace Interface
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void CreateCart_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
