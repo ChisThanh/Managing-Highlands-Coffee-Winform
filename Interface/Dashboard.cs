@@ -29,7 +29,7 @@ namespace Interface
             HighlandEntities db = new HighlandEntities();
 
             lbE.Text = db.Employees.Count().ToString();
-             
+
             lbO.Text= db.OrderPDs.Count().ToString();
 
             lbT.Text = db.OrderPDs.Sum(o => o.Total).ToString();
@@ -64,6 +64,11 @@ namespace Interface
         }
 
         private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Panel4_Paint(object sender, PaintEventArgs e)
         {
 
         }

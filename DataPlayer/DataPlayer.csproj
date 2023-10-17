@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Guna.Charts.WinForms" Version="1.0.9" />
+    <PackageReference Include="Guna.UI2.WinForms" Version="2.0.4.5" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
   </ItemGroup>
 

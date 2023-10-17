@@ -29,6 +29,7 @@
         <AssociationConnector Association="highlandModel.FK_OrderPD_Employee" />
         <AssociationConnector Association="highlandModel.FK_OrderDetails_OrderPD" />
         <AssociationConnector Association="highlandModel.FK_OrderDetails_ProcessedFood" />
+        <EntityTypeShape EntityType="highlandModel.sysdiagram" Width="1.5" PointX="5.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -40,6 +40,7 @@ namespace Interface.Models
         public virtual DbSet<TableSalary> TableSalaries { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     
         public virtual ObjectResult<Top5Product_Result> Top5Product()
         {
