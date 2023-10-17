@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Odbc;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+
 
 
 namespace DataPlayer
@@ -13,58 +14,58 @@ namespace DataPlayer
         public string Email { get; set; }
         public string Phone { get; set; }
 
-        public async Task<List<Supplier>> getAllTable()
+        public async Task<List<Supplier>> GetAllTable()
         {
-            List<Supplier> tmp = new List<Supplier>();
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            List<Supplier> suppliers = new List<Supplier>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     await connection.OpenAsync();
 
                     string sqlQuery = "SELECT * FROM Suppliers";
-                    using (OdbcCommand command = new OdbcCommand(sqlQuery, connection))
+
+                    using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
-                        using (OdbcDataReader reader = (OdbcDataReader)await command.ExecuteReaderAsync())
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
                             while (await reader.ReadAsync())
                             {
                                 Supplier supplier = new Supplier();
                                 supplier.Id = reader.GetInt32(0);
                                 supplier.Name = reader.GetString(1);
-                                supplier.Email = reader.GetString(1);
-                                supplier.Phone = reader.GetString(1);
-                                tmp.Add(supplier);
+                                supplier.Email = reader.GetString(2); // Sử dụng cột thứ 2 cho Email
+                                supplier.Phone = reader.GetString(3); // Sử dụng cột thứ 3 cho Số điện thoại
+                                suppliers.Add(supplier);
                             }
                         }
                     }
-                    return tmp;
+
+                    return suppliers;
                 }
                 catch (Exception ex)
                 {
                     throw new Exception(ex.Message);
                 }
-                finally
-                {
-                    connection.Close(); 
-                }
             }
         }
+
         public bool InsertSupplier(string name, string email, string phone)
         {
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
 
-                    string sqlQuery = "INSERT INTO Suppliers (supplier_name, contact_email, contact_phone) VALUES (?, ?, ?)";
+                    string sqlQuery = "INSERT INTO Suppliers (supplier_name, contact_email, contact_phone) VALUES (@a, @b, @c)";
 
-                    using (OdbcCommand command = new OdbcCommand(sqlQuery, connection))
+                    using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
-                        command.Parameters.AddWithValue("?", name);
-                        command.Parameters.AddWithValue("?", email);
-                        command.Parameters.AddWithValue("?", phone);
+                        command.Parameters.AddWithValue("@a", name);
+                        command.Parameters.AddWithValue("@b", email);
+                        command.Parameters.AddWithValue("@c", phone);
 
                         int rowsAffected = command.ExecuteNonQuery();
 

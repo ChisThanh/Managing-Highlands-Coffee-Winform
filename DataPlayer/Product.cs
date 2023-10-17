@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Data.Odbc;
+
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace DataPlayer
@@ -17,18 +18,18 @@ namespace DataPlayer
         {
             int newProductId = -1;
 
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     await connection.OpenAsync();
 
-                    string insertQuery = "INSERT INTO Products (product_name, description) VALUES (?, ?); SELECT SCOPE_IDENTITY();";
+                    string insertQuery = "INSERT INTO Products (product_name, description) VALUES (@a, @b); SELECT SCOPE_IDENTITY();";
 
-                    using (OdbcCommand command = new OdbcCommand(insertQuery, connection))
+                    using (SqlCommand command = new SqlCommand(insertQuery, connection))
                     {
-                        command.Parameters.AddWithValue("?", productName);
-                        command.Parameters.AddWithValue("?", description);
+                        command.Parameters.AddWithValue("@a", productName);
+                        command.Parameters.AddWithValue("@b", description);
 
                         newProductId = Convert.ToInt32(await command.ExecuteScalarAsync());
                     }
@@ -44,15 +45,15 @@ namespace DataPlayer
         public async Task<bool> IsProductExists(string productName)
         {
 
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     await connection.OpenAsync();
-                    string sqlQuery = "SELECT COUNT(*) FROM Products WHERE product_name = ?";
-                    using (OdbcCommand command = new OdbcCommand(sqlQuery, connection))
+                    string sqlQuery = "SELECT COUNT(*) FROM Products WHERE product_name = @a";
+                    using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
-                        command.Parameters.AddWithValue("?", productName);
+                        command.Parameters.AddWithValue("@a", productName);
                         int productCount = (int)command.ExecuteScalar();
                         if (productCount > 0)
                         {
@@ -74,17 +75,17 @@ namespace DataPlayer
         }
         public async Task<int> GetProductIdByName(string productName)
         {
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     connection.Open();
 
-                    string sqlQuery = "SELECT product_id FROM Products WHERE product_name = ?";
+                    string sqlQuery = "SELECT product_id FROM Products WHERE product_name = @a";
 
-                    using (OdbcCommand command = new OdbcCommand(sqlQuery, connection))
+                    using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
-                        command.Parameters.AddWithValue("?", productName);
+                        command.Parameters.AddWithValue("@a", productName);
 
                         object result = await command.ExecuteScalarAsync();
 

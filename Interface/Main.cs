@@ -13,6 +13,10 @@ namespace Interface
             customSizePanel();
             openChildForm(new Dashboard());
         }
+        private void guna2Button1_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void customSizePanel()
         {
             panel2.Visible = false;
@@ -84,6 +88,13 @@ namespace Interface
         private void guna2Button6_Click(object sender, EventArgs e)
         {
             openChildForm(new ListWarehouses());
+        }
+
+      
+
+        private void guna2Button1_Click_2(object sender, EventArgs e)
+        {
+            openChildForm(new ProductTransfers());
         }
     }
 }

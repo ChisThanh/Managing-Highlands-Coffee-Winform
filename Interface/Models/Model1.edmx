@@ -289,6 +289,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Top5Product" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="highlandModelStoreContainer">
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
@@ -410,6 +411,7 @@
             <End Role="ProcessedFood" EntitySet="ProcessedFoods" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
+          <FunctionImport Name="Top5Product" ReturnType="Collection(highlandModel.Top5Product_Result)" />
         </EntityContainer>
         <EntityType Name="Employee">
           <Key>
@@ -717,6 +719,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="Top5Product_Result">
+          <Property Type="Int32" Name="productid" Nullable="false" />
+          <Property Type="String" Name="productname" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="TotalQuantity" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -885,6 +892,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Top5Product" FunctionName="highlandModel.Store.Top5Product">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="highlandModel.Top5Product_Result">
+                <ScalarProperty Name="productid" ColumnName="productid" />
+                <ScalarProperty Name="productname" ColumnName="productname" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

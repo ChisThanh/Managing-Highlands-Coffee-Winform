@@ -5,6 +5,9 @@ using System.Linq;
 using System.Windows.Forms;
 using DataPlayer;
 using Interface.Helpers;
+using RestSharp.Extensions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using ComboBox = System.Windows.Forms.ComboBox;
 
 namespace Interface
 {
@@ -20,11 +23,10 @@ namespace Interface
         }
         private async void ImportProduct_Load(object sender, EventArgs e)
         {
-            //Excel excel = new Excel();
-            //products = excel.FileEXProduct("D:\\Code\\Interface\\Excel\\Book1.xlsx");
+
             dataGirdView();
 
-            suppliers = await supplier.getAllTable();
+            suppliers = await supplier.GetAllTable();
             guna2ComboBox1.DataSource = suppliers;
             guna2ComboBox1.DisplayMember = "Name";
             guna2ComboBox1.ValueMember = "Id";
@@ -152,14 +154,13 @@ namespace Interface
             var f = new CreateSuppliers();
             if (f.ShowDialog() == DialogResult.OK)
             {
-                suppliers = await supplier.getAllTable();
+                suppliers = await supplier.GetAllTable();
                 guna2ComboBox1.DataSource = suppliers;
             }
         }
         private async void guna2Button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Thêm thành công", "Thông báo");
-            ClearDAGV();
+           
             PurchaseOrder pur = new PurchaseOrder();
             Product product = new Product();
             PurchaseOrderDetail pd = new PurchaseOrderDetail();
@@ -168,7 +169,7 @@ namespace Interface
 
             int SupID = (int)guna2ComboBox1.SelectedValue;
 
-            int OrderID = await pur.InsertPurchaseOrder(SupID, DateTime.Now.ToShortDateString(), this.total);
+            int OrderID = await pur.InsertPurchaseOrder(SupID, DateTime.Now.ToShortDateString(), int.Parse(total));
 
             if (OrderID != -1)
             {
@@ -219,7 +220,9 @@ namespace Interface
                     }
                 }
             }
-            
+            MessageBox.Show("Thêm thành công", "Thông báo");
+            ClearDAGV();
+
         }
         private void guna2DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
@@ -273,6 +276,8 @@ namespace Interface
             }
 
         }
+
+       
     }
 }
 

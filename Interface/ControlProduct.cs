@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace Interface
 {
-    public partial class Form1 : Form
+    public partial class ControlProduct : UserControl
     {
-        public Form1()
+        public ControlProduct()
         {
             InitializeComponent();
         }
+
+       
     }
 }

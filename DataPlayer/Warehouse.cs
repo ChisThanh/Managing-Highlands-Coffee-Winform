@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Odbc;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace DataPlayer
@@ -15,7 +15,7 @@ namespace DataPlayer
         {
             List<Warehouse> warehouses = new List<Warehouse>();
 
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
@@ -23,9 +23,9 @@ namespace DataPlayer
 
                     string sqlQuery = "SELECT * FROM Warehouses";
 
-                    using (OdbcCommand command = new OdbcCommand(sqlQuery, connection))
+                    using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
-                        using (OdbcDataReader reader = (OdbcDataReader)await command.ExecuteReaderAsync())
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
                             while (await reader.ReadAsync())
                             {
@@ -58,7 +58,7 @@ namespace DataPlayer
         {
             List<Tuple<string, int>> productQuantities = new List<Tuple<string, int>>();
 
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
@@ -70,9 +70,9 @@ namespace DataPlayer
                                       "JOIN Products p ON p.product_id = d.product_id " +
                                       "WHERE w.warehouse_id = 1";
 
-                    using (OdbcCommand command = new OdbcCommand(sqlQuery, connection))
+                    using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
-                        using (OdbcDataReader reader = (OdbcDataReader)await command.ExecuteReaderAsync())
+                        using (SqlDataReader reader = await command.ExecuteReaderAsync())
                         {
                             while (await reader.ReadAsync())
                             {
@@ -96,18 +96,18 @@ namespace DataPlayer
 
         public async Task<bool> InsertProductInWarehouse(int productId, int quantity)
         {
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     await connection.OpenAsync();
 
-                    string insertQuery = "INSERT INTO ProductTransferDetails (transfer_id, product_id, quantity) VALUES (1, ?, ?)";
+                    string insertQuery = "INSERT INTO ProductTransferDetails (transfer_id, product_id, quantity) VALUES (1, @a, @b)";
 
-                    using (OdbcCommand command = new OdbcCommand(insertQuery, connection))
+                    using (SqlCommand command = new SqlCommand(insertQuery, connection))
                     {
-                        command.Parameters.AddWithValue("?", productId);
-                        command.Parameters.AddWithValue("?", quantity);
+                        command.Parameters.AddWithValue("@a", productId);
+                        command.Parameters.AddWithValue("@b", quantity);
 
                         int rowsAffected = await command.ExecuteNonQueryAsync();
 
@@ -124,18 +124,18 @@ namespace DataPlayer
 
         public async Task<bool> isProductInWarehouse(int productId)
         {
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     await connection.OpenAsync();
 
-                    string selectQuery = "SELECT * FROM ProductTransferDetails WHERE transfer_id = 1 AND product_id = ?";
-                    using (OdbcCommand selectCommand = new OdbcCommand(selectQuery, connection))
+                    string selectQuery = "SELECT * FROM ProductTransferDetails WHERE transfer_id = 1 AND product_id = @a";
+                    using (SqlCommand selectCommand = new SqlCommand(selectQuery, connection))
                     {
-                        selectCommand.Parameters.AddWithValue("?", productId);
+                        selectCommand.Parameters.AddWithValue("@a", productId);
 
-                        using (OdbcDataReader reader = (OdbcDataReader)await selectCommand.ExecuteReaderAsync())
+                        using (SqlDataReader reader = await selectCommand.ExecuteReaderAsync())
                         {
                             return reader.HasRows;
                         }
@@ -155,17 +155,17 @@ namespace DataPlayer
 
         public async Task<bool> UpdateProductInWarehouse(int productId, int quantity)
         {
-            using (OdbcConnection connection = new OdbcConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     await connection.OpenAsync();
 
-                    string updateQuery = "UPDATE ProductTransferDetails SET quantity = quantity + ? WHERE transfer_id = 1 AND product_id = ?";
-                    using (OdbcCommand updateCommand = new OdbcCommand(updateQuery, connection))
+                    string updateQuery = "UPDATE ProductTransferDetails SET quantity = quantity + @a WHERE transfer_id = 1 AND product_id = @b";
+                    using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
                     {
-                        updateCommand.Parameters.AddWithValue("?", quantity);
-                        updateCommand.Parameters.AddWithValue("?", productId);
+                        updateCommand.Parameters.AddWithValue("@a", quantity);
+                        updateCommand.Parameters.AddWithValue("@b", productId);
 
                         int rowsAffected = await updateCommand.ExecuteNonQueryAsync();
                         return rowsAffected > 0;
