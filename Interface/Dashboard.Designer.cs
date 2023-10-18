@@ -114,7 +114,7 @@
             this.PanelC.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PanelC.ShadowDecoration.Enabled = true;
             this.PanelC.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(8);
-            this.PanelC.Size = new System.Drawing.Size(428, 330);
+            this.PanelC.Size = new System.Drawing.Size(457, 330);
             this.PanelC.TabIndex = 1;
             // 
             // label1
@@ -136,7 +136,7 @@
             this.gunaChart1.BackColor = System.Drawing.Color.Transparent;
             chartFont1.FontName = "Arial";
             this.gunaChart1.Legend.LabelFont = chartFont1;
-            this.gunaChart1.Location = new System.Drawing.Point(3, 6);
+            this.gunaChart1.Location = new System.Drawing.Point(5, 6);
             this.gunaChart1.Name = "gunaChart1";
             this.gunaChart1.Size = new System.Drawing.Size(448, 321);
             this.gunaChart1.TabIndex = 0;
@@ -200,7 +200,7 @@
             this.p1.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p1.ShadowDecoration.Enabled = true;
             this.p1.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.p1.Size = new System.Drawing.Size(192, 98);
+            this.p1.Size = new System.Drawing.Size(215, 98);
             this.p1.TabIndex = 2;
             // 
             // guna2HScrollBar1
@@ -275,13 +275,13 @@
             this.p2.Controls.Add(this.pictureBox3);
             this.p2.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p2.FillColor = System.Drawing.Color.White;
-            this.p2.Location = new System.Drawing.Point(258, 62);
+            this.p2.Location = new System.Drawing.Point(260, 62);
             this.p2.Name = "p2";
             this.p2.ShadowDecoration.BorderRadius = 5;
             this.p2.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p2.ShadowDecoration.Enabled = true;
             this.p2.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.p2.Size = new System.Drawing.Size(192, 98);
+            this.p2.Size = new System.Drawing.Size(215, 98);
             this.p2.TabIndex = 2;
             // 
             // guna2HScrollBar2
@@ -345,13 +345,13 @@
             this.p3.Controls.Add(this.pictureBox1);
             this.p3.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p3.FillColor = System.Drawing.Color.White;
-            this.p3.Location = new System.Drawing.Point(504, 62);
+            this.p3.Location = new System.Drawing.Point(508, 62);
             this.p3.Name = "p3";
             this.p3.ShadowDecoration.BorderRadius = 5;
             this.p3.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p3.ShadowDecoration.Enabled = true;
             this.p3.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.p3.Size = new System.Drawing.Size(192, 98);
+            this.p3.Size = new System.Drawing.Size(215, 98);
             this.p3.TabIndex = 2;
             // 
             // guna2HScrollBar3
@@ -415,13 +415,13 @@
             this.p4.Controls.Add(this.pictureBox4);
             this.p4.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p4.FillColor = System.Drawing.Color.White;
-            this.p4.Location = new System.Drawing.Point(751, 62);
+            this.p4.Location = new System.Drawing.Point(756, 62);
             this.p4.Name = "p4";
             this.p4.ShadowDecoration.BorderRadius = 5;
             this.p4.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p4.ShadowDecoration.Enabled = true;
             this.p4.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.p4.Size = new System.Drawing.Size(192, 98);
+            this.p4.Size = new System.Drawing.Size(215, 98);
             this.p4.TabIndex = 2;
             // 
             // guna2HScrollBar4
@@ -487,7 +487,7 @@
             this.PanelB.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PanelB.ShadowDecoration.Enabled = true;
             this.PanelB.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(8);
-            this.PanelB.Size = new System.Drawing.Size(457, 327);
+            this.PanelB.Size = new System.Drawing.Size(487, 327);
             this.PanelB.TabIndex = 1;
             // 
             // chartB
@@ -505,7 +505,7 @@
             chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.chartB.ChartAreas.Add(chartArea1);
-            this.chartB.Location = new System.Drawing.Point(-49, 3);
+            this.chartB.Location = new System.Drawing.Point(-48, 3);
             this.chartB.Name = "chartB";
             this.chartB.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
             series1.ChartArea = "ChartArea1";
@@ -537,7 +537,7 @@
             this.guna2TextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.guna2TextBox1.IconLeft = ((System.Drawing.Image)(resources.GetObject("guna2TextBox1.IconLeft")));
-            this.guna2TextBox1.Location = new System.Drawing.Point(685, 18);
+            this.guna2TextBox1.Location = new System.Drawing.Point(688, 16);
             this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2TextBox1.Name = "guna2TextBox1";
             this.guna2TextBox1.PasswordChar = '\0';
@@ -565,7 +565,7 @@
             this.PanelA.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PanelA.ShadowDecoration.Enabled = true;
             this.PanelA.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.PanelA.Size = new System.Drawing.Size(931, 322);
+            this.PanelA.Size = new System.Drawing.Size(960, 322);
             this.PanelA.TabIndex = 2;
             // 
             // chartA
@@ -596,7 +596,7 @@
             series2.MarkerSize = 1;
             series2.Name = "Series1";
             this.chartA.Series.Add(series2);
-            this.chartA.Size = new System.Drawing.Size(931, 322);
+            this.chartA.Size = new System.Drawing.Size(960, 322);
             this.chartA.TabIndex = 0;
             this.chartA.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -623,7 +623,7 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(10, 0);
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(992, 808);
+            this.ClientSize = new System.Drawing.Size(1000, 808);
             this.Controls.Add(this.guna2Separator1);
             this.Controls.Add(this.guna2TextBox1);
             this.Controls.Add(this.label2);

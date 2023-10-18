@@ -17,6 +17,7 @@
         <EntityTypeShape EntityType="highlandModel.Supplier" Width="1.5" PointX="7.75" PointY="9" />
         <EntityTypeShape EntityType="highlandModel.TableSalary" Width="1.5" PointX="0.75" PointY="8.75" />
         <EntityTypeShape EntityType="highlandModel.Warehouse" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="highlandModel.OrderDetail" Width="1.5" PointX="11.125" PointY="15.125" />
         <AssociationConnector Association="highlandModel.FK_OrderPD_Payment" />
         <AssociationConnector Association="highlandModel.FK__ProductTr__produ__40F9A68C" />
         <AssociationConnector Association="highlandModel.FK_PurchaseOrderDetails_Products" />
@@ -25,7 +26,6 @@
         <AssociationConnector Association="highlandModel.FK_ProductTransfers_Warehouses1" />
         <AssociationConnector Association="highlandModel.FK_PurchaseOrderDetails_PurchaseOrders" />
         <AssociationConnector Association="highlandModel.FK_PurchaseOrders_Suppliers" />
-        <EntityTypeShape EntityType="highlandModel.OrderDetail" Width="1.5" PointX="11.125" PointY="15.125" />
         <AssociationConnector Association="highlandModel.FK_OrderPD_Employee" />
         <AssociationConnector Association="highlandModel.FK_OrderDetails_OrderPD" />
         <AssociationConnector Association="highlandModel.FK_OrderDetails_ProcessedFood" />

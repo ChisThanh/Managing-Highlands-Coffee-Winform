@@ -435,6 +435,12 @@
     <Compile Include="ControlProduct.Designer.cs">
       <DependentUpon>ControlProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="TableSalaryEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableSalaryEmployee.Designer.cs">
+      <DependentUpon>TableSalaryEmployee.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CreateCart.resx">
       <DependentUpon>CreateCart.cs</DependentUpon>
     </EmbeddedResource>
@@ -481,6 +487,9 @@
     </Compile>
     <EmbeddedResource Include="ControlProduct.resx">
       <DependentUpon>ControlProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableSalaryEmployee.resx">
+      <DependentUpon>TableSalaryEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -549,8 +558,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
   </Target>
 </Project>
