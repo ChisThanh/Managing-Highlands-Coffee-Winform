@@ -114,7 +114,7 @@
             this.PanelC.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PanelC.ShadowDecoration.Enabled = true;
             this.PanelC.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(8);
-            this.PanelC.Size = new System.Drawing.Size(441, 330);
+            this.PanelC.Size = new System.Drawing.Size(428, 330);
             this.PanelC.TabIndex = 1;
             // 
             // label1
@@ -200,7 +200,7 @@
             this.p1.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p1.ShadowDecoration.Enabled = true;
             this.p1.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.p1.Size = new System.Drawing.Size(205, 98);
+            this.p1.Size = new System.Drawing.Size(192, 98);
             this.p1.TabIndex = 2;
             // 
             // guna2HScrollBar1
@@ -281,7 +281,7 @@
             this.p2.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p2.ShadowDecoration.Enabled = true;
             this.p2.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.p2.Size = new System.Drawing.Size(205, 98);
+            this.p2.Size = new System.Drawing.Size(192, 98);
             this.p2.TabIndex = 2;
             // 
             // guna2HScrollBar2
@@ -351,7 +351,7 @@
             this.p3.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p3.ShadowDecoration.Enabled = true;
             this.p3.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.p3.Size = new System.Drawing.Size(205, 98);
+            this.p3.Size = new System.Drawing.Size(192, 98);
             this.p3.TabIndex = 2;
             // 
             // guna2HScrollBar3
@@ -421,7 +421,7 @@
             this.p4.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p4.ShadowDecoration.Enabled = true;
             this.p4.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.p4.Size = new System.Drawing.Size(205, 98);
+            this.p4.Size = new System.Drawing.Size(192, 98);
             this.p4.TabIndex = 2;
             // 
             // guna2HScrollBar4
@@ -487,7 +487,7 @@
             this.PanelB.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PanelB.ShadowDecoration.Enabled = true;
             this.PanelB.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(8);
-            this.PanelB.Size = new System.Drawing.Size(470, 327);
+            this.PanelB.Size = new System.Drawing.Size(457, 327);
             this.PanelB.TabIndex = 1;
             // 
             // chartB
@@ -565,7 +565,7 @@
             this.PanelA.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PanelA.ShadowDecoration.Enabled = true;
             this.PanelA.ShadowDecoration.Shadow = new System.Windows.Forms.Padding(6);
-            this.PanelA.Size = new System.Drawing.Size(944, 322);
+            this.PanelA.Size = new System.Drawing.Size(931, 322);
             this.PanelA.TabIndex = 2;
             // 
             // chartA
@@ -596,7 +596,7 @@
             series2.MarkerSize = 1;
             series2.Name = "Series1";
             this.chartA.Series.Add(series2);
-            this.chartA.Size = new System.Drawing.Size(944, 322);
+            this.chartA.Size = new System.Drawing.Size(931, 322);
             this.chartA.TabIndex = 0;
             this.chartA.Text = "chart2";
             title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
