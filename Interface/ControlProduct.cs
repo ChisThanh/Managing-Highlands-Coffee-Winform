@@ -16,7 +16,10 @@ namespace Interface
         {
             InitializeComponent();
         }
+        //public ControlProduct()
+        //{
+        //    InitializeComponent();
+        //}
 
-       
     }
 }

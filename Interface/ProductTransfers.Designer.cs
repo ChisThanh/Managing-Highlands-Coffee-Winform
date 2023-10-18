@@ -38,8 +38,8 @@
             this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.controlProduct1 = new Interface.ControlProduct();
             this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
+            this.controlProduct1 = new Interface.ControlProduct();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -162,13 +162,6 @@
             this.panel1.Size = new System.Drawing.Size(854, 431);
             this.panel1.TabIndex = 12;
             // 
-            // controlProduct1
-            // 
-            this.controlProduct1.Location = new System.Drawing.Point(52, 15);
-            this.controlProduct1.Name = "controlProduct1";
-            this.controlProduct1.Size = new System.Drawing.Size(700, 75);
-            this.controlProduct1.TabIndex = 0;
-            // 
             // guna2Separator3
             // 
             this.guna2Separator3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -178,12 +171,19 @@
             this.guna2Separator3.Size = new System.Drawing.Size(808, 10);
             this.guna2Separator3.TabIndex = 13;
             // 
+            // controlProduct1
+            // 
+            this.controlProduct1.Location = new System.Drawing.Point(52, 15);
+            this.controlProduct1.Name = "controlProduct1";
+            this.controlProduct1.Size = new System.Drawing.Size(700, 75);
+            this.controlProduct1.TabIndex = 0;
+            // 
             // ProductTransfers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(878, 707);
+            this.ClientSize = new System.Drawing.Size(900, 707);
             this.Controls.Add(this.guna2Separator3);
             this.Controls.Add(this.guna2Button2);
             this.Controls.Add(this.panel1);

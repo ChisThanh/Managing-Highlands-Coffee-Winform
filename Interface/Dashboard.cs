@@ -18,8 +18,7 @@ namespace Interface
         public Dashboard()
         {
             InitializeComponent();
-            label1.Text = "T"+ DateTime.Now.Month;
-            label26.Text = "Tháng " + DateTime.Now.Month;
+            //label1.Text = "T"+ DateTime.Now.Month;
         }
 
 
@@ -29,26 +28,14 @@ namespace Interface
             HighlandEntities db = new HighlandEntities();
 
             lbE.Text = db.Employees.Count().ToString();
-             
-            lbO.Text= db.OrderPDs.Count().ToString();
+
+            lbO.Text = db.OrderPDs.Count().ToString();
 
             lbT.Text = db.OrderPDs.Sum(o => o.Total).ToString();
 
-  
-
             var list = db.Top5Product().ToList();
-           
 
-
-
-
-
-
-
-
-            string[] months = { "Sản phẩm A", "Sản phẩm B", "Sản phẩm C", "Sản phẩm D" };
-            Random r = new Random();
-            gunaChart1.Legend.Position = Guna.Charts.WinForms.LegendPosition.Right;
+            gunaChart1.Legend.Position = Guna.Charts.WinForms.LegendPosition.Bottom;
             gunaChart1.XAxes.Display = false;
             gunaChart1.YAxes.Display = false;
 
@@ -60,12 +47,27 @@ namespace Interface
             }
             gunaChart1.Datasets.Add(dataset1);
             gunaChart1.Update();
+
+
            
+            Random r = new Random();
+            for (int i = 1; i <= 5; i++)
+            {
+                chartA.Series["Series1"].Points.AddXY("chi nhánh " + i, r.Next(90, 999));
+                chartB.Series["Series1"].Points.AddXY("tháng " + i, r.Next(90, 999));
+                
+            }
+
+            if (chartB.Series["Series1"].Points.Count >= 2)
+            {
+                chartB.Series["Series1"].Points[0].Color = Color.FromArgb(82, 182, 154);
+                chartB.Series["Series1"].Points[1].Color = Color.FromArgb(52, 160, 164);
+                chartB.Series["Series1"].Points[2].Color = Color.FromArgb(22, 138, 173);
+                chartB.Series["Series1"].Points[3].Color = Color.FromArgb(26, 117, 159);
+                chartB.Series["Series1"].Points[4].Color = Color.FromArgb(30, 96, 145);
+            }
         }
 
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
+    
     }
 }
