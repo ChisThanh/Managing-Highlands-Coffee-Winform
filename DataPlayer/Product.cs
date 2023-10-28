@@ -24,7 +24,7 @@ namespace DataPlayer
                 {
                     await connection.OpenAsync();
 
-                    string insertQuery = "INSERT INTO Products (product_name, description) VALUES (@a, @b); SELECT SCOPE_IDENTITY();";
+                    string insertQuery = "INSERT INTO Ingredient (product_name, description) VALUES (@a, @b); SELECT SCOPE_IDENTITY();";
 
                     using (SqlCommand command = new SqlCommand(insertQuery, connection))
                     {
@@ -50,7 +50,7 @@ namespace DataPlayer
                 try
                 {
                     await connection.OpenAsync();
-                    string sqlQuery = "SELECT COUNT(*) FROM Products WHERE product_name = @a";
+                    string sqlQuery = "SELECT COUNT(*) FROM Ingredient WHERE product_name = @a";
                     using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
                         command.Parameters.AddWithValue("@a", productName);
@@ -81,7 +81,7 @@ namespace DataPlayer
                 {
                     connection.Open();
 
-                    string sqlQuery = "SELECT product_id FROM Products WHERE product_name = @a";
+                    string sqlQuery = "SELECT product_id FROM Ingredient WHERE product_name = @a";
 
                     using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {

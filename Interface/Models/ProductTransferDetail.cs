@@ -18,7 +18,7 @@ namespace Interface.Models
         public int product_id { get; set; }
         public Nullable<int> quantity { get; set; }
     
-        public virtual Product Product { get; set; }
+        public virtual Ingredient Ingredient { get; set; }
         public virtual ProductTransfer ProductTransfer { get; set; }
     }
 }

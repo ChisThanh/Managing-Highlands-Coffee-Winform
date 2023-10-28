@@ -12,10 +12,10 @@ namespace Interface.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class Ingredient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public Ingredient()
         {
             this.ProductTransferDetails = new HashSet<ProductTransferDetail>();
             this.PurchaseOrderDetails = new HashSet<PurchaseOrderDetail>();
@@ -23,6 +23,7 @@ namespace Interface.Models
     
         public int product_id { get; set; }
         public string product_name { get; set; }
+        public Nullable<double> Price { get; set; }
         public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

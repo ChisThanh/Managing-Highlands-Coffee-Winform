@@ -22,7 +22,7 @@ namespace Interface
         {
             Warehouse w = new Warehouse();
 
-            var list = await w.GetProductInWarehouse();
+            var list = await w.GetProductInWarehouse(id);
 
             if (list == null || list.Count <= 0)
             {

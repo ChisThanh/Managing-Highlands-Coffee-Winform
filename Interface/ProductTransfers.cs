@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Guna.UI2.WinForms;
+using Interface.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media.Media3D;
+using static OfficeOpenXml.ExcelErrorValue;
 
 namespace Interface
 {
@@ -32,6 +35,12 @@ namespace Interface
             controlCounter++; // Tăng biến đếm
         }
 
-       
+        HighlandEntities db = new HighlandEntities();
+        private void ProductTransfers_Load(object sender, EventArgs e)
+        {
+            guna2ComboBox2.DataSource = db.Branches.ToList();
+            guna2ComboBox2.DisplayMember = "";
+            guna2ComboBox2.ValueMember = "";
+        }
     }
 }

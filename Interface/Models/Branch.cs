@@ -12,22 +12,29 @@ namespace Interface.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Warehouse
+    public partial class Branch
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Warehouse()
+        public Branch()
         {
+            this.OrderPDs = new HashSet<OrderPD>();
             this.ProductTransfers = new HashSet<ProductTransfer>();
             this.ProductTransfers1 = new HashSet<ProductTransfer>();
+            this.WarehousesDetails = new HashSet<WarehousesDetail>();
         }
     
-        public int warehouse_id { get; set; }
-        public string warehouse_name { get; set; }
-        public string location { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> warehouses_id { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderPD> OrderPDs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductTransfer> ProductTransfers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductTransfer> ProductTransfers1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WarehousesDetail> WarehousesDetails { get; set; }
     }
 }

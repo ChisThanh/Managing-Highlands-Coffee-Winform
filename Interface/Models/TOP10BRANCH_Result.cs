@@ -10,16 +10,10 @@
 namespace Interface.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class PurchaseOrderDetail
+    public partial class TOP10BRANCH_Result
     {
-        public int order_id { get; set; }
-        public int product_id { get; set; }
-        public Nullable<double> price { get; set; }
-        public Nullable<int> quantity { get; set; }
-    
-        public virtual Ingredient Ingredient { get; set; }
-        public virtual PurchaseOrder PurchaseOrder { get; set; }
+        public Nullable<double> TotalAmount { get; set; }
+        public string Name { get; set; }
     }
 }

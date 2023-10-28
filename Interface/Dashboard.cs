@@ -1,15 +1,9 @@
 ﻿using Interface.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using System.Windows.Input;
+using Interface.Helpers;
 
 namespace Interface
 {
@@ -18,7 +12,6 @@ namespace Interface
         public Dashboard()
         {
             InitializeComponent();
-            //label1.Text = "T"+ DateTime.Now.Month;
         }
 
 
@@ -31,9 +24,9 @@ namespace Interface
 
             lbO.Text = db.OrderPDs.Count().ToString();
 
-            lbT.Text = db.OrderPDs.Sum(o => o.Total).ToString();
+            lbT.Text = FormatCurrency.FormatAmount((int)db.OrderPDs.Sum(o => o.Total));
 
-            var list = db.Top5Product().ToList();
+            var list = db.Top5Product("year", DateTime.Now.Year, null).ToList();
 
             gunaChart1.Legend.Position = Guna.Charts.WinForms.LegendPosition.Bottom;
             gunaChart1.XAxes.Display = false;
@@ -49,14 +42,18 @@ namespace Interface
             gunaChart1.Update();
 
 
-           
-            Random r = new Random();
-            for (int i = 1; i <= 5; i++)
+            var listTOP10 = db.TOP10BRANCH("year", DateTime.Now.Year, null);
+            foreach (var item in listTOP10)
             {
-                chartA.Series["Series1"].Points.AddXY("chi nhánh " + i, r.Next(90, 999));
-                chartB.Series["Series1"].Points.AddXY("tháng " + i, r.Next(90, 999));
-                
+                chartA.Series["Series1"].Points.AddXY(HP.GetLast2Words(item.Name), item.TotalAmount);
             }
+
+            var listTOP5 = db.TOP5MONTH();
+            foreach (var item in listTOP5)
+            {
+                chartB.Series["Series1"].Points.AddXY(HP.GetLast2Words("T "+item.DayChart), item.TotalAmount);
+            }
+
 
             if (chartB.Series["Series1"].Points.Count >= 2)
             {
@@ -66,8 +63,45 @@ namespace Interface
                 chartB.Series["Series1"].Points[3].Color = Color.FromArgb(26, 117, 159);
                 chartB.Series["Series1"].Points[4].Color = Color.FromArgb(30, 96, 145);
             }
+
+            for (int i = DateTime.Now.Day; i >= 1; i--)
+            {
+                guna2ComboBox2.Items.Add(i);
+            }
         }
 
-    
+        private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            int selectedIndex = comboBox.SelectedIndex;
+            guna2ComboBox2.Items.Clear();
+            switch (selectedIndex)
+            {
+                case 0:
+                    for (int i = DateTime.Now.Day; i >= 1; i--)
+                    {
+                        guna2ComboBox2.Items.Add(i);
+                    }
+                    break;
+                case 1:
+                    for (int i = DateTime.Now.Month; i >= 1; i--)
+                    {
+                        guna2ComboBox2.Items.Add(i);
+                    }
+                    break;
+                case 2:
+                    for (int i = (int)DateTime.Now.Year; i >= 2010; i--)
+                    {
+                        guna2ComboBox2.Items.Add(i);
+                    }
+                    break;
+                default:
+                    break;
+
+            }
+            guna2ComboBox2.SelectedIndex = 0;
+
+
+        }
     }
 }

@@ -71,7 +71,7 @@ namespace DataPlayer
 
                     string sqlQuery = "SELECT d.product_name, p.quantity, p.price " +
                                       "FROM PurchaseOrderDetails p " +
-                                      "JOIN Products d ON p.product_id = d.product_id " +
+                                      "JOIN Ingredient d ON p.product_id = d.product_id " +
                                       "WHERE P.order_id = @OrderID";
 
                     using (SqlCommand command = new SqlCommand(sqlQuery, connection))

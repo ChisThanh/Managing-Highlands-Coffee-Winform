@@ -27,23 +27,102 @@ namespace Interface.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Ingredient> Ingredients { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<OrderPD> OrderPDs { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<ProcessedFood> ProcessedFoods { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductTransferDetail> ProductTransferDetails { get; set; }
         public virtual DbSet<ProductTransfer> ProductTransfers { get; set; }
         public virtual DbSet<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
         public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<TableSalary> TableSalaries { get; set; }
-        public virtual DbSet<Warehouse> Warehouses { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<WarehousesDetail> WarehousesDetails { get; set; }
     
-        public virtual ObjectResult<Top5Product_Result> Top5Product()
+        public virtual ObjectResult<Top5Product_Result> Top5Product(string filterType, Nullable<int> filterValue, Nullable<System.DateTime> day)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Top5Product_Result>("Top5Product");
+            var filterTypeParameter = filterType != null ?
+                new ObjectParameter("FilterType", filterType) :
+                new ObjectParameter("FilterType", typeof(string));
+    
+            var filterValueParameter = filterValue.HasValue ?
+                new ObjectParameter("FilterValue", filterValue) :
+                new ObjectParameter("FilterValue", typeof(int));
+    
+            var dayParameter = day.HasValue ?
+                new ObjectParameter("Day", day) :
+                new ObjectParameter("Day", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Top5Product_Result>("Top5Product", filterTypeParameter, filterValueParameter, dayParameter);
+        }
+    
+        public virtual int GetAllWareHouseById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAllWareHouseById", idParameter);
+        }
+    
+        public virtual ObjectResult<TOP10BRANCH_Result> TOP10BRANCH(string filterType, Nullable<int> filterValue, Nullable<System.DateTime> day)
+        {
+            var filterTypeParameter = filterType != null ?
+                new ObjectParameter("FilterType", filterType) :
+                new ObjectParameter("FilterType", typeof(string));
+    
+            var filterValueParameter = filterValue.HasValue ?
+                new ObjectParameter("FilterValue", filterValue) :
+                new ObjectParameter("FilterValue", typeof(int));
+    
+            var dayParameter = day.HasValue ?
+                new ObjectParameter("Day", day) :
+                new ObjectParameter("Day", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TOP10BRANCH_Result>("TOP10BRANCH", filterTypeParameter, filterValueParameter, dayParameter);
+        }
+    
+        public virtual ObjectResult<TOP5MONTH_Result> TOP5MONTH()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TOP5MONTH_Result>("TOP5MONTH");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> FilterOrdersQuantity(string filterType, Nullable<int> filterValue, Nullable<System.DateTime> day)
+        {
+            var filterTypeParameter = filterType != null ?
+                new ObjectParameter("FilterType", filterType) :
+                new ObjectParameter("FilterType", typeof(string));
+    
+            var filterValueParameter = filterValue.HasValue ?
+                new ObjectParameter("FilterValue", filterValue) :
+                new ObjectParameter("FilterValue", typeof(int));
+    
+            var dayParameter = day.HasValue ?
+                new ObjectParameter("Day", day) :
+                new ObjectParameter("Day", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("FilterOrdersQuantity", filterTypeParameter, filterValueParameter, dayParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<double>> FilterOrdersTotal(string filterType, Nullable<int> filterValue, Nullable<System.DateTime> day)
+        {
+            var filterTypeParameter = filterType != null ?
+                new ObjectParameter("FilterType", filterType) :
+                new ObjectParameter("FilterType", typeof(string));
+    
+            var filterValueParameter = filterValue.HasValue ?
+                new ObjectParameter("FilterValue", filterValue) :
+                new ObjectParameter("FilterValue", typeof(int));
+    
+            var dayParameter = day.HasValue ?
+                new ObjectParameter("Day", day) :
+                new ObjectParameter("Day", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("FilterOrdersTotal", filterTypeParameter, filterValueParameter, dayParameter);
         }
     }
 }

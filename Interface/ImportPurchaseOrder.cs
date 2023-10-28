@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows.Forms;
 using DataPlayer;
 using Interface.Helpers;
-using RestSharp.Extensions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using ComboBox = System.Windows.Forms.ComboBox;
 
@@ -181,11 +180,11 @@ namespace Interface
                         int ProductID = await product.GetProductIdByName(item.ProductName);
                         bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
 
-                        bool checkProduct = await warehouse.isProductInWarehouse(ProductID);
-                        if (checkProduct)
-                            await warehouse.UpdateProductInWarehouse(ProductID, item.Quantity);
-                        else
-                            await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
+                        //bool checkProduct = await warehouse.isProductInWarehouse(ProductID);
+                        //if (checkProduct)
+                        //    await warehouse.UpdateProductInWarehouse(ProductID, item.Quantity);
+                        //else
+                        //    await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
 
                         if (!isInserted)
                         {
@@ -200,11 +199,11 @@ namespace Interface
                         {
                             bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
 
-                            bool checkProduct = await warehouse.isProductInWarehouse(ProductID);
-                            if (checkProduct)
-                                await warehouse.UpdateProductInWarehouse(ProductID, item.Quantity);
-                            else
-                                await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
+                            //bool checkProduct = await warehouse.isProductInWarehouse(ProductID);
+                            //if (checkProduct)
+                            //    await warehouse.UpdateProductInWarehouse(ProductID, item.Quantity);
+                            //else
+                            //    await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
                             if (!isInserted)
                             {
                                 MessageBox.Show("Có lỗi khi thêm chi tiết đơn hàng.");

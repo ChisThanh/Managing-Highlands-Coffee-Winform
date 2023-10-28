@@ -9,7 +9,7 @@ namespace DataPlayer
 
         protected string connectionString = "Data Source=highlanddb.database.windows.net;" +
                               "Initial Catalog=highland;User ID=vudance;" +
-                              "Password=Vudang0402;" +
+                              "Password=E;" +
                               "Connect Timeout=60;" +
                               "Encrypt=True;" +
                               "TrustServerCertificate=False;" +
