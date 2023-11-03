@@ -12,7 +12,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="300" />
           <Property Name="Address" Type="nvarchar" MaxLength="300" />
-          <Property Name="warehouses_id" Type="int" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -41,6 +40,7 @@
           <Property Name="TenTK" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Mk" Type="nvarchar" MaxLength="20" />
           <Property Name="QuyenTC" Type="varchar" MaxLength="10" />
+          <Property Name="Id" Type="int" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -95,10 +95,10 @@
           <Key>
             <PropertyRef Name="transfer_id" />
           </Key>
-          <Property Name="transfer_id" Type="int" Nullable="false" />
           <Property Name="from_warehouse_id" Type="int" />
           <Property Name="to_warehouse_id" Type="int" />
           <Property Name="transfer_date" Type="date" />
+          <Property Name="transfer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="PurchaseOrderDetails">
           <Key>
@@ -186,6 +186,18 @@
             </Principal>
             <Dependent Role="ProductTransferDetails">
               <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_ID">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -281,7 +293,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ProductTransfers">
-              <PropertyRef Name="to_warehouse_id" />
+              <PropertyRef Name="from_warehouse_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -346,6 +358,19 @@
         <Function Name="GetAllWareHouseById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetLastInsertedID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from" Type="int" Mode="In" />
+          <Parameter Name="to" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetWarehouse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="issue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="from" Type="int" Mode="In" />
+          <Parameter Name="to" Type="int" Mode="In" />
+          <Parameter Name="transfer_id" Type="int" Mode="In" />
+          <Parameter Name="product_id" Type="int" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="NumberOfEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="TOP10BRANCH" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FilterType" Type="nvarchar" Mode="In" />
           <Parameter Name="FilterValue" Type="int" Mode="In" />
@@ -376,6 +401,10 @@
           <AssociationSet Name="FK__ProductTr__produ__44952D46" Association="Self.FK__ProductTr__produ__44952D46">
             <End Role="Ingredient" EntitySet="Ingredient" />
             <End Role="ProductTransferDetails" EntitySet="ProductTransferDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_ID" Association="Self.FK_Login_ID">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Login" EntitySet="Login" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderDetails_OrderPD" Association="Self.FK_OrderDetails_OrderPD">
             <End Role="OrderPD" EntitySet="OrderPD" />
@@ -436,16 +465,12 @@
             <Parameter Name="FilterValue" Mode="In" Type="Int32" />
             <Parameter Name="Day" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="GetAllWareHouseById">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="TOP10BRANCH" ReturnType="Collection(highlandModel.TOP10BRANCH_Result)" >
             <Parameter Name="FilterType" Mode="In" Type="String" />
             <Parameter Name="FilterValue" Mode="In" Type="Int32" />
             <Parameter Name="Day" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="TOP5MONTH" ReturnType="Collection(highlandModel.TOP5MONTH_Result)" />
-          <EntitySet Name="Branches" EntityType="highlandModel.Branch" />
           <EntitySet Name="Employees" EntityType="highlandModel.Employee" />
           <EntitySet Name="Ingredients" EntityType="highlandModel.Ingredient" />
           <EntitySet Name="Logins" EntityType="highlandModel.Login" />
@@ -460,22 +485,6 @@
           <EntitySet Name="Suppliers" EntityType="highlandModel.Supplier" />
           <EntitySet Name="TableSalaries" EntityType="highlandModel.TableSalary" />
           <EntitySet Name="WarehousesDetails" EntityType="highlandModel.WarehousesDetail" />
-          <AssociationSet Name="FK_OrderPD_Branch" Association="highlandModel.FK_OrderPD_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="OrderPD" EntitySet="OrderPDs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductTransfers_Branch" Association="highlandModel.FK_ProductTransfers_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="ProductTransfer" EntitySet="ProductTransfers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductTransfers_Branch1" Association="highlandModel.FK_ProductTransfers_Branch1">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="ProductTransfer" EntitySet="ProductTransfers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_WarehousesDetails_Branch" Association="highlandModel.FK_WarehousesDetails_Branch">
-            <End Role="Branch" EntitySet="Branches" />
-            <End Role="WarehousesDetail" EntitySet="WarehousesDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_OrderPD_Employee" Association="highlandModel.FK_OrderPD_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="OrderPD" EntitySet="OrderPDs" />
@@ -522,6 +531,43 @@
             <Parameter Name="FilterValue" Mode="In" Type="Int32" />
             <Parameter Name="Day" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <AssociationSet Name="FK_Login_ID" Association="highlandModel.FK_Login_ID">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Login" EntitySet="Logins" />
+          </AssociationSet>
+          <FunctionImport Name="NumberOfEmployee" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="GetWarehouse" ReturnType="Collection(highlandModel.GetWarehouse_Result)" />
+          <EntitySet Name="Branches" EntityType="highlandModel.Branch" />
+          <AssociationSet Name="FK_OrderPD_Branch" Association="highlandModel.FK_OrderPD_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="OrderPD" EntitySet="OrderPDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTransfers_Branch" Association="highlandModel.FK_ProductTransfers_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="ProductTransfer" EntitySet="ProductTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTransfers_Branch1" Association="highlandModel.FK_ProductTransfers_Branch1">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="ProductTransfer" EntitySet="ProductTransfers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WarehousesDetails_Branch" Association="highlandModel.FK_WarehousesDetails_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="WarehousesDetail" EntitySet="WarehousesDetails" />
+          </AssociationSet>
+          <FunctionImport Name="GetAllWareHouseById" ReturnType="Collection(highlandModel.GetAllWareHouseById_Result)">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetLastInsertedID">
+            <Parameter Name="from" Mode="In" Type="Int32" />
+            <Parameter Name="to" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="issue">
+            <Parameter Name="from" Mode="In" Type="Int32" />
+            <Parameter Name="to" Mode="In" Type="Int32" />
+            <Parameter Name="transfer_id" Mode="In" Type="Int32" />
+            <Parameter Name="product_id" Mode="In" Type="Int32" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Top5Product_Result">
           <Property Type="Int32" Name="productid" Nullable="false" />
@@ -536,19 +582,6 @@
           <Property Type="String" Name="DayChart" Nullable="true" MaxLength="7" />
           <Property Type="Double" Name="TotalAmount" Nullable="true" />
         </ComplexType>
-        <EntityType Name="Branch">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="warehouses_id" Type="Int32" />
-          <NavigationProperty Name="OrderPDs" Relationship="highlandModel.FK_OrderPD_Branch" FromRole="Branch" ToRole="OrderPD" />
-          <NavigationProperty Name="ProductTransfers" Relationship="highlandModel.FK_ProductTransfers_Branch" FromRole="Branch" ToRole="ProductTransfer" />
-          <NavigationProperty Name="ProductTransfers1" Relationship="highlandModel.FK_ProductTransfers_Branch1" FromRole="Branch" ToRole="ProductTransfer" />
-          <NavigationProperty Name="WarehousesDetails" Relationship="highlandModel.FK_WarehousesDetails_Branch" FromRole="Branch" ToRole="WarehousesDetail" />
-        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id" />
@@ -560,6 +593,7 @@
           <Property Name="CreatedAt" Type="DateTime" Precision="0" />
           <Property Name="Role" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="OrderPDs" Relationship="highlandModel.FK_OrderPD_Employee" FromRole="Employee" ToRole="OrderPD" />
+          <NavigationProperty Name="Logins" Relationship="highlandModel.FK_Login_ID" FromRole="Employee" ToRole="Login" />
         </EntityType>
         <EntityType Name="Ingredient">
           <Key>
@@ -579,6 +613,8 @@
           <Property Name="TenTK" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Mk" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="QuyenTC" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="highlandModel.FK_Login_ID" FromRole="Login" ToRole="Employee" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -603,10 +639,10 @@
           <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PaymentID" Type="Int32" />
           <Property Name="BranchID" Type="Int32" />
-          <NavigationProperty Name="Branch" Relationship="highlandModel.FK_OrderPD_Branch" FromRole="OrderPD" ToRole="Branch" />
           <NavigationProperty Name="Employee" Relationship="highlandModel.FK_OrderPD_Employee" FromRole="OrderPD" ToRole="Employee" />
           <NavigationProperty Name="OrderDetails" Relationship="highlandModel.FK_OrderDetails_OrderPD" FromRole="OrderPD" ToRole="OrderDetail" />
           <NavigationProperty Name="Payment" Relationship="highlandModel.FK_OrderPD_Payment" FromRole="OrderPD" ToRole="Payment" />
+          <NavigationProperty Name="Branch" Relationship="highlandModel.FK_OrderPD_Branch" FromRole="OrderPD" ToRole="Branch" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -647,9 +683,8 @@
           <Property Name="from_warehouse_id" Type="Int32" />
           <Property Name="to_warehouse_id" Type="Int32" />
           <Property Name="transfer_date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Branch" Relationship="highlandModel.FK_ProductTransfers_Branch" FromRole="ProductTransfer" ToRole="Branch" />
-          <NavigationProperty Name="Branch1" Relationship="highlandModel.FK_ProductTransfers_Branch1" FromRole="ProductTransfer" ToRole="Branch" />
           <NavigationProperty Name="ProductTransferDetails" Relationship="highlandModel.FK_ProductTransferDetails_ProductTransfers" FromRole="ProductTransfer" ToRole="ProductTransferDetail" />
+          <NavigationProperty Name="Branch" Relationship="highlandModel.FK_ProductTransfers_Branch" FromRole="ProductTransfer" ToRole="Branch" />
         </EntityType>
         <EntityType Name="PurchaseOrderDetail">
           <Key>
@@ -734,54 +769,6 @@
           <Property Name="quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Branch" Relationship="highlandModel.FK_WarehousesDetails_Branch" FromRole="WarehousesDetail" ToRole="Branch" />
         </EntityType>
-        <Association Name="FK_OrderPD_Branch">
-          <End Type="highlandModel.Branch" Role="Branch" Multiplicity="0..1" />
-          <End Type="highlandModel.OrderPD" Role="OrderPD" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrderPD">
-              <PropertyRef Name="BranchID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductTransfers_Branch">
-          <End Type="highlandModel.Branch" Role="Branch" Multiplicity="0..1" />
-          <End Type="highlandModel.ProductTransfer" Role="ProductTransfer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductTransfer">
-              <PropertyRef Name="from_warehouse_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductTransfers_Branch1">
-          <End Type="highlandModel.Branch" Role="Branch" Multiplicity="0..1" />
-          <End Type="highlandModel.ProductTransfer" Role="ProductTransfer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ProductTransfer">
-              <PropertyRef Name="to_warehouse_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_WarehousesDetails_Branch">
-          <End Type="highlandModel.Branch" Role="Branch" Multiplicity="1" />
-          <End Type="highlandModel.WarehousesDetail" Role="WarehousesDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Branch">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WarehousesDetail">
-              <PropertyRef Name="warehouses_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderPD_Employee">
           <End Type="highlandModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="highlandModel.OrderPD" Role="OrderPD" Multiplicity="*" />
@@ -890,6 +877,87 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Login_ID">
+          <End Type="highlandModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="highlandModel.Login" Role="Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetWarehouse_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderPDs" Relationship="highlandModel.FK_OrderPD_Branch" FromRole="Branch" ToRole="OrderPD" />
+          <NavigationProperty Name="ProductTransfers" Relationship="highlandModel.FK_ProductTransfers_Branch" FromRole="Branch" ToRole="ProductTransfer" />
+          <NavigationProperty Name="ProductTransfers1" Relationship="highlandModel.FK_ProductTransfers_Branch1" FromRole="Branch" ToRole="ProductTransfer" />
+          <NavigationProperty Name="WarehousesDetails" Relationship="highlandModel.FK_WarehousesDetails_Branch" FromRole="Branch" ToRole="WarehousesDetail" />
+        </EntityType>
+        <Association Name="FK_OrderPD_Branch">
+          <End Type="highlandModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="highlandModel.OrderPD" Role="OrderPD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderPD">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTransfers_Branch">
+          <End Type="highlandModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="highlandModel.ProductTransfer" Role="ProductTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTransfer">
+              <PropertyRef Name="from_warehouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTransfers_Branch1">
+          <End Type="highlandModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="highlandModel.ProductTransfer" Role="ProductTransfer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductTransfer">
+              <PropertyRef Name="to_warehouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WarehousesDetails_Branch">
+          <End Type="highlandModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="highlandModel.WarehousesDetail" Role="WarehousesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WarehousesDetail">
+              <PropertyRef Name="warehouses_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetAllWareHouseById_Result">
+          <Property Type="Int32" Name="product_id" Nullable="false" />
+          <Property Type="String" Name="product_name" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="quantity" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -905,7 +973,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetAllWareHouseById" FunctionName="highlandModel.Store.GetAllWareHouseById" />
           <FunctionImportMapping FunctionImportName="TOP10BRANCH" FunctionName="highlandModel.Store.TOP10BRANCH">
             <ResultMapping>
               <ComplexTypeMapping TypeName="highlandModel.TOP10BRANCH_Result">
@@ -922,16 +989,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="Branches">
-            <EntityTypeMapping TypeName="highlandModel.Branch">
-              <MappingFragment StoreEntitySet="Branch">
-                <ScalarProperty Name="warehouses_id" ColumnName="warehouses_id" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="highlandModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
@@ -957,6 +1014,7 @@
           <EntitySetMapping Name="Logins">
             <EntityTypeMapping TypeName="highlandModel.Login">
               <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="QuyenTC" ColumnName="QuyenTC" />
                 <ScalarProperty Name="Mk" ColumnName="Mk" />
                 <ScalarProperty Name="TenTK" ColumnName="TenTK" />
@@ -1107,6 +1165,35 @@
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="FilterOrdersQuantity" FunctionName="highlandModel.Store.FilterOrdersQuantity" />
           <FunctionImportMapping FunctionImportName="FilterOrdersTotal" FunctionName="highlandModel.Store.FilterOrdersTotal" />
+          <FunctionImportMapping FunctionImportName="NumberOfEmployee" FunctionName="highlandModel.Store.NumberOfEmployee" />
+          <FunctionImportMapping FunctionImportName="GetWarehouse" FunctionName="highlandModel.Store.GetWarehouse">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="highlandModel.GetWarehouse_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="highlandModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAllWareHouseById" FunctionName="highlandModel.Store.GetAllWareHouseById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="highlandModel.GetAllWareHouseById_Result">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetLastInsertedID" FunctionName="highlandModel.Store.GetLastInsertedID" />
+          <FunctionImportMapping FunctionImportName="issue" FunctionName="highlandModel.Store.issue" />
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

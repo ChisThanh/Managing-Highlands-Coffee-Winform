@@ -38,9 +38,7 @@
             this.guna2Separator2 = new Guna.UI2.WinForms.Guna2Separator();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.controlProduct1 = new Interface.ControlProduct();
             this.guna2Separator3 = new Guna.UI2.WinForms.Guna2Separator();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -67,6 +65,7 @@
             this.guna2Button1.Size = new System.Drawing.Size(180, 45);
             this.guna2Button1.TabIndex = 3;
             this.guna2Button1.Text = "Xuất kho";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // label2
             // 
@@ -108,6 +107,7 @@
             this.guna2ComboBox2.Name = "guna2ComboBox2";
             this.guna2ComboBox2.Size = new System.Drawing.Size(140, 36);
             this.guna2ComboBox2.TabIndex = 4;
+            this.guna2ComboBox2.SelectedIndexChanged += new System.EventHandler(this.guna2ComboBox2_SelectedIndexChanged);
             // 
             // guna2Separator1
             // 
@@ -156,18 +156,10 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.controlProduct1);
             this.panel1.Location = new System.Drawing.Point(12, 181);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(976, 431);
             this.panel1.TabIndex = 12;
-            // 
-            // controlProduct1
-            // 
-            this.controlProduct1.Location = new System.Drawing.Point(125, 17);
-            this.controlProduct1.Name = "controlProduct1";
-            this.controlProduct1.Size = new System.Drawing.Size(700, 75);
-            this.controlProduct1.TabIndex = 0;
             // 
             // guna2Separator3
             // 
@@ -199,7 +191,6 @@
             this.Name = "ProductTransfers";
             this.Text = "ProductTransfers";
             this.Load += new System.EventHandler(this.ProductTransfers_Load);
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,7 +207,6 @@
         private Guna.UI2.WinForms.Guna2Separator guna2Separator2;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private System.Windows.Forms.Panel panel1;
-        private ControlProduct controlProduct1;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator3;
     }
 }

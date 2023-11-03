@@ -28,30 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.Charts.WinForms.ChartFont chartFont9 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.ChartFont chartFont10 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.ChartFont chartFont11 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.ChartFont chartFont12 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.Grid grid4 = new Guna.Charts.WinForms.Grid();
-            Guna.Charts.WinForms.Tick tick4 = new Guna.Charts.WinForms.Tick();
-            Guna.Charts.WinForms.ChartFont chartFont13 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.Grid grid5 = new Guna.Charts.WinForms.Grid();
-            Guna.Charts.WinForms.Tick tick5 = new Guna.Charts.WinForms.Tick();
-            Guna.Charts.WinForms.ChartFont chartFont14 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.Grid grid6 = new Guna.Charts.WinForms.Grid();
-            Guna.Charts.WinForms.PointLabel pointLabel2 = new Guna.Charts.WinForms.PointLabel();
-            Guna.Charts.WinForms.ChartFont chartFont15 = new Guna.Charts.WinForms.ChartFont();
-            Guna.Charts.WinForms.Tick tick6 = new Guna.Charts.WinForms.Tick();
-            Guna.Charts.WinForms.ChartFont chartFont16 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont1 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont2 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont3 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.ChartFont chartFont4 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid1 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.Tick tick1 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont5 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid2 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.Tick tick2 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont6 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Grid grid3 = new Guna.Charts.WinForms.Grid();
+            Guna.Charts.WinForms.PointLabel pointLabel1 = new Guna.Charts.WinForms.PointLabel();
+            Guna.Charts.WinForms.ChartFont chartFont7 = new Guna.Charts.WinForms.ChartFont();
+            Guna.Charts.WinForms.Tick tick3 = new Guna.Charts.WinForms.Tick();
+            Guna.Charts.WinForms.ChartFont chartFont8 = new Guna.Charts.WinForms.ChartFont();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.PanelC = new Guna.UI2.WinForms.Guna2Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.gunaChart1 = new Guna.Charts.WinForms.GunaChart();
             this.lbT = new System.Windows.Forms.Label();
             this.p1 = new Guna.UI2.WinForms.Guna2Panel();
@@ -83,6 +82,7 @@
             this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
+            this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.PanelC.SuspendLayout();
             this.p1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -106,10 +106,9 @@
             this.PanelC.BorderColor = System.Drawing.Color.Transparent;
             this.PanelC.BorderRadius = 10;
             this.PanelC.BorderThickness = 2;
-            this.PanelC.Controls.Add(this.label1);
             this.PanelC.Controls.Add(this.gunaChart1);
             this.PanelC.FillColor = System.Drawing.Color.White;
-            this.PanelC.Location = new System.Drawing.Point(491, 506);
+            this.PanelC.Location = new System.Drawing.Point(497, 506);
             this.PanelC.Name = "PanelC";
             this.PanelC.ShadowDecoration.BorderRadius = 10;
             this.PanelC.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -118,56 +117,44 @@
             this.PanelC.Size = new System.Drawing.Size(456, 330);
             this.PanelC.TabIndex = 1;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(365, 67);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 19);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Tháng 10";
-            // 
             // gunaChart1
             // 
             this.gunaChart1.Animation.Duration = 500;
             this.gunaChart1.Animation.Easing = Guna.Charts.WinForms.Easing.Linear;
             this.gunaChart1.BackColor = System.Drawing.Color.Transparent;
-            chartFont9.FontName = "Arial";
-            this.gunaChart1.Legend.LabelFont = chartFont9;
+            chartFont1.FontName = "Arial";
+            this.gunaChart1.Legend.LabelFont = chartFont1;
             this.gunaChart1.Location = new System.Drawing.Point(5, 6);
             this.gunaChart1.Name = "gunaChart1";
             this.gunaChart1.Size = new System.Drawing.Size(448, 321);
             this.gunaChart1.TabIndex = 0;
-            chartFont10.FontName = "Arial";
-            chartFont10.Size = 16;
-            chartFont10.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
-            this.gunaChart1.Title.Font = chartFont10;
+            chartFont2.FontName = "Arial";
+            chartFont2.Size = 16;
+            chartFont2.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
+            this.gunaChart1.Title.Font = chartFont2;
             this.gunaChart1.Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
             this.gunaChart1.Title.Text = "Top 5 sản phẩm bán chạy";
-            chartFont11.FontName = "Arial";
-            this.gunaChart1.Tooltips.BodyFont = chartFont11;
-            chartFont12.FontName = "Arial";
-            chartFont12.Size = 9;
-            chartFont12.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
-            this.gunaChart1.Tooltips.TitleFont = chartFont12;
-            this.gunaChart1.XAxes.GridLines = grid4;
-            chartFont13.FontName = "Arial";
-            tick4.Font = chartFont13;
-            this.gunaChart1.XAxes.Ticks = tick4;
-            this.gunaChart1.YAxes.GridLines = grid5;
-            chartFont14.FontName = "Arial";
-            tick5.Font = chartFont14;
-            this.gunaChart1.YAxes.Ticks = tick5;
-            this.gunaChart1.ZAxes.GridLines = grid6;
-            chartFont15.FontName = "Arial";
-            pointLabel2.Font = chartFont15;
-            this.gunaChart1.ZAxes.PointLabels = pointLabel2;
-            chartFont16.FontName = "Arial";
-            tick6.Font = chartFont16;
-            this.gunaChart1.ZAxes.Ticks = tick6;
+            chartFont3.FontName = "Arial";
+            this.gunaChart1.Tooltips.BodyFont = chartFont3;
+            chartFont4.FontName = "Arial";
+            chartFont4.Size = 9;
+            chartFont4.Style = Guna.Charts.WinForms.ChartFontStyle.Bold;
+            this.gunaChart1.Tooltips.TitleFont = chartFont4;
+            this.gunaChart1.XAxes.GridLines = grid1;
+            chartFont5.FontName = "Arial";
+            tick1.Font = chartFont5;
+            this.gunaChart1.XAxes.Ticks = tick1;
+            this.gunaChart1.YAxes.GridLines = grid2;
+            chartFont6.FontName = "Arial";
+            tick2.Font = chartFont6;
+            this.gunaChart1.YAxes.Ticks = tick2;
+            this.gunaChart1.ZAxes.GridLines = grid3;
+            chartFont7.FontName = "Arial";
+            pointLabel1.Font = chartFont7;
+            this.gunaChart1.ZAxes.PointLabels = pointLabel1;
+            chartFont8.FontName = "Arial";
+            tick3.Font = chartFont8;
+            this.gunaChart1.ZAxes.Ticks = tick3;
             // 
             // lbT
             // 
@@ -194,7 +181,7 @@
             this.p1.Controls.Add(this.pictureBox5);
             this.p1.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p1.FillColor = System.Drawing.Color.White;
-            this.p1.Location = new System.Drawing.Point(-14, 62);
+            this.p1.Location = new System.Drawing.Point(-7, 62);
             this.p1.Name = "p1";
             this.p1.ShadowDecoration.BorderRadius = 5;
             this.p1.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -274,7 +261,7 @@
             this.p2.Controls.Add(this.pictureBox3);
             this.p2.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p2.FillColor = System.Drawing.Color.White;
-            this.p2.Location = new System.Drawing.Point(241, 62);
+            this.p2.Location = new System.Drawing.Point(268, 62);
             this.p2.Name = "p2";
             this.p2.ShadowDecoration.BorderRadius = 5;
             this.p2.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -343,7 +330,7 @@
             this.p3.Controls.Add(this.pictureBox1);
             this.p3.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p3.FillColor = System.Drawing.Color.White;
-            this.p3.Location = new System.Drawing.Point(494, 62);
+            this.p3.Location = new System.Drawing.Point(512, 62);
             this.p3.Name = "p3";
             this.p3.ShadowDecoration.BorderRadius = 5;
             this.p3.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -412,7 +399,7 @@
             this.p4.Controls.Add(this.pictureBox4);
             this.p4.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.p4.FillColor = System.Drawing.Color.White;
-            this.p4.Location = new System.Drawing.Point(748, 62);
+            this.p4.Location = new System.Drawing.Point(753, 62);
             this.p4.Name = "p4";
             this.p4.ShadowDecoration.BorderRadius = 5;
             this.p4.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -477,7 +464,7 @@
             this.PanelB.BorderThickness = 2;
             this.PanelB.Controls.Add(this.chartB);
             this.PanelB.FillColor = System.Drawing.Color.White;
-            this.PanelB.Location = new System.Drawing.Point(-14, 506);
+            this.PanelB.Location = new System.Drawing.Point(-9, 506);
             this.PanelB.Name = "PanelB";
             this.PanelB.ShadowDecoration.BorderRadius = 10;
             this.PanelB.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -489,35 +476,35 @@
             // chartB
             // 
             this.chartB.BackColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisX.IsMarginVisible = false;
-            chartArea3.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Silver;
-            chartArea3.AxisX.LineColor = System.Drawing.Color.Silver;
-            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisY.LabelStyle.ForeColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea3.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
-            chartArea3.AxisY.MinorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.chartB.ChartAreas.Add(chartArea3);
+            chartArea1.AxisX.IsMarginVisible = false;
+            chartArea1.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Silver;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.LabelStyle.ForeColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
+            chartArea1.AxisY.MinorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.chartB.ChartAreas.Add(chartArea1);
             this.chartB.Location = new System.Drawing.Point(-22, 6);
             this.chartB.Name = "chartB";
             this.chartB.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series3.ChartArea = "ChartArea1";
-            series3.EmptyPointStyle.IsVisibleInLegend = false;
-            series3.IsValueShownAsLabel = true;
-            series3.IsXValueIndexed = true;
-            series3.Name = "Series1";
-            this.chartB.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.EmptyPointStyle.IsVisibleInLegend = false;
+            series1.IsValueShownAsLabel = true;
+            series1.IsXValueIndexed = true;
+            series1.Name = "Series1";
+            this.chartB.Series.Add(series1);
             this.chartB.Size = new System.Drawing.Size(529, 324);
             this.chartB.TabIndex = 0;
             this.chartB.Text = "chart1";
-            title3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
-            title3.Name = "Title1";
-            title3.Text = "Doanh thu 5 tháng gần đây";
-            this.chartB.Titles.Add(title3);
+            title1.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            title1.Name = "Title1";
+            title1.Text = "Doanh thu 5 tháng gần đây";
+            this.chartB.Titles.Add(title1);
             // 
             // PanelA
             // 
@@ -529,7 +516,7 @@
             this.PanelA.Controls.Add(this.chartA);
             this.PanelA.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PanelA.FillColor = System.Drawing.Color.White;
-            this.PanelA.Location = new System.Drawing.Point(-11, 173);
+            this.PanelA.Location = new System.Drawing.Point(-6, 171);
             this.PanelA.Name = "PanelA";
             this.PanelA.ShadowDecoration.BorderRadius = 5;
             this.PanelA.ShadowDecoration.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -541,40 +528,40 @@
             // chartA
             // 
             this.chartA.BackColor = System.Drawing.Color.Transparent;
-            chartArea4.AxisX.IsMarginVisible = false;
-            chartArea4.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Silver;
-            chartArea4.AxisX.LineColor = System.Drawing.Color.Transparent;
-            chartArea4.AxisX.MajorGrid.LineColor = System.Drawing.Color.Transparent;
-            chartArea4.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
-            chartArea4.AxisY.LabelStyle.ForeColor = System.Drawing.Color.Silver;
-            chartArea4.AxisY.LineColor = System.Drawing.Color.Transparent;
-            chartArea4.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea4.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
-            chartArea4.Name = "ChartArea1";
-            this.chartA.ChartAreas.Add(chartArea4);
+            chartArea2.AxisX.IsMarginVisible = false;
+            chartArea2.AxisX.LabelStyle.ForeColor = System.Drawing.Color.Silver;
+            chartArea2.AxisX.LineColor = System.Drawing.Color.Transparent;
+            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.Transparent;
+            chartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Transparent;
+            chartArea2.AxisY.LabelStyle.ForeColor = System.Drawing.Color.Silver;
+            chartArea2.AxisY.LineColor = System.Drawing.Color.Transparent;
+            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea2.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Silver;
+            chartArea2.Name = "ChartArea1";
+            this.chartA.ChartAreas.Add(chartArea2);
             this.chartA.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartA.Location = new System.Drawing.Point(0, 0);
             this.chartA.Name = "chartA";
-            series4.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.LeftRight;
-            series4.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            series4.BorderColor = System.Drawing.Color.MediumPurple;
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
-            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            series4.MarkerColor = System.Drawing.Color.Red;
-            series4.MarkerSize = 1;
-            series4.Name = "Series1";
-            this.chartA.Series.Add(series4);
+            series2.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.LeftRight;
+            series2.BackSecondaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            series2.BorderColor = System.Drawing.Color.MediumPurple;
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            series2.MarkerColor = System.Drawing.Color.Red;
+            series2.MarkerSize = 1;
+            series2.Name = "Series1";
+            this.chartA.Series.Add(series2);
             this.chartA.Size = new System.Drawing.Size(959, 322);
             this.chartA.TabIndex = 0;
             this.chartA.Text = "chart2";
-            title4.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
-            title4.Name = "Title1";
-            title4.Text = "Top doanh thu";
-            this.chartA.Titles.Add(title4);
+            title2.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            title2.Name = "Title1";
+            title2.Text = "Top doanh thu";
+            this.chartA.Titles.Add(title2);
             // 
             // guna2Separator1
             // 
@@ -601,7 +588,7 @@
             "Ngày",
             "Tháng",
             "Năm"});
-            this.guna2ComboBox1.Location = new System.Drawing.Point(660, 16);
+            this.guna2ComboBox1.Location = new System.Drawing.Point(649, 13);
             this.guna2ComboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2ComboBox1.Name = "guna2ComboBox1";
             this.guna2ComboBox1.Size = new System.Drawing.Size(168, 36);
@@ -618,15 +605,17 @@
             this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(531, 16);
+            this.guna2Button1.Location = new System.Drawing.Point(529, 13);
             this.guna2Button1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Size = new System.Drawing.Size(116, 36);
             this.guna2Button1.TabIndex = 9;
             this.guna2Button1.Text = "Lựa chọn";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // guna2ComboBox2
             // 
+            this.guna2ComboBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.guna2ComboBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2ComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.guna2ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -635,10 +624,27 @@
             this.guna2ComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.guna2ComboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.guna2ComboBox2.ItemHeight = 30;
-            this.guna2ComboBox2.Location = new System.Drawing.Point(846, 16);
+            this.guna2ComboBox2.Location = new System.Drawing.Point(840, 13);
             this.guna2ComboBox2.Name = "guna2ComboBox2";
-            this.guna2ComboBox2.Size = new System.Drawing.Size(84, 36);
+            this.guna2ComboBox2.Size = new System.Drawing.Size(118, 36);
             this.guna2ComboBox2.TabIndex = 10;
+            // 
+            // guna2DateTimePicker1
+            // 
+            this.guna2DateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.guna2DateTimePicker1.Animated = true;
+            this.guna2DateTimePicker1.Checked = true;
+            this.guna2DateTimePicker1.FillColor = System.Drawing.Color.White;
+            this.guna2DateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.guna2DateTimePicker1.Location = new System.Drawing.Point(831, 13);
+            this.guna2DateTimePicker1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.guna2DateTimePicker1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.guna2DateTimePicker1.Name = "guna2DateTimePicker1";
+            this.guna2DateTimePicker1.Size = new System.Drawing.Size(127, 36);
+            this.guna2DateTimePicker1.TabIndex = 11;
+            this.guna2DateTimePicker1.Value = new System.DateTime(2023, 10, 29, 18, 19, 6, 835);
+            this.guna2DateTimePicker1.Visible = false;
             // 
             // Dashboard
             // 
@@ -648,6 +654,7 @@
             this.AutoScrollMargin = new System.Drawing.Size(10, 0);
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1000, 700);
+            this.Controls.Add(this.guna2DateTimePicker1);
             this.Controls.Add(this.guna2ComboBox2);
             this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.guna2ComboBox1);
@@ -666,7 +673,6 @@
             this.Text = "Dashboard";
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.PanelC.ResumeLayout(false);
-            this.PanelC.PerformLayout();
             this.p1.ResumeLayout(false);
             this.p1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -719,9 +725,9 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartA;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartB;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
-        private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox2;
+        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
     }
 }

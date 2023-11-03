@@ -18,6 +18,7 @@ namespace Interface.Models
         public Employee()
         {
             this.OrderPDs = new HashSet<OrderPD>();
+            this.Logins = new HashSet<Login>();
         }
     
         public int Id { get; set; }
@@ -29,5 +30,7 @@ namespace Interface.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderPD> OrderPDs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Login> Logins { get; set; }
     }
 }

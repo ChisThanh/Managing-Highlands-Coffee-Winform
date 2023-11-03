@@ -26,6 +26,12 @@ namespace Interface
             dataGirdView();
 
             suppliers = await supplier.GetAllTable();
+
+            foreach (var supplier in suppliers)
+            {
+                supplier.Name = HP.GetLast2Words(supplier.Name);
+            }
+
             guna2ComboBox1.DataSource = suppliers;
             guna2ComboBox1.DisplayMember = "Name";
             guna2ComboBox1.ValueMember = "Id";
@@ -179,13 +185,6 @@ namespace Interface
                     {
                         int ProductID = await product.GetProductIdByName(item.ProductName);
                         bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
-
-                        //bool checkProduct = await warehouse.isProductInWarehouse(ProductID);
-                        //if (checkProduct)
-                        //    await warehouse.UpdateProductInWarehouse(ProductID, item.Quantity);
-                        //else
-                        //    await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
-
                         if (!isInserted)
                         {
                             MessageBox.Show("Có lỗi khi thêm chi tiết đơn hàng.");
@@ -198,12 +197,6 @@ namespace Interface
                         if (ProductID != -1)
                         {
                             bool isInserted = await pd.InsertPurchaseOrderDetail(OrderID.ToString(), ProductID.ToString(), item.Quantity.ToString(), item.Price.ToString());
-
-                            //bool checkProduct = await warehouse.isProductInWarehouse(ProductID);
-                            //if (checkProduct)
-                            //    await warehouse.UpdateProductInWarehouse(ProductID, item.Quantity);
-                            //else
-                            //    await warehouse.InsertProductInWarehouse(ProductID, item.Quantity);
                             if (!isInserted)
                             {
                                 MessageBox.Show("Có lỗi khi thêm chi tiết đơn hàng.");

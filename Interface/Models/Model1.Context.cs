@@ -27,7 +27,6 @@ namespace Interface.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Ingredient> Ingredients { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
@@ -42,6 +41,7 @@ namespace Interface.Models
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<TableSalary> TableSalaries { get; set; }
         public virtual DbSet<WarehousesDetail> WarehousesDetails { get; set; }
+        public virtual DbSet<Branch> Branches { get; set; }
     
         public virtual ObjectResult<Top5Product_Result> Top5Product(string filterType, Nullable<int> filterValue, Nullable<System.DateTime> day)
         {
@@ -58,15 +58,6 @@ namespace Interface.Models
                 new ObjectParameter("Day", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Top5Product_Result>("Top5Product", filterTypeParameter, filterValueParameter, dayParameter);
-        }
-    
-        public virtual int GetAllWareHouseById(Nullable<int> id)
-        {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetAllWareHouseById", idParameter);
         }
     
         public virtual ObjectResult<TOP10BRANCH_Result> TOP10BRANCH(string filterType, Nullable<int> filterValue, Nullable<System.DateTime> day)
@@ -123,6 +114,63 @@ namespace Interface.Models
                 new ObjectParameter("Day", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("FilterOrdersTotal", filterTypeParameter, filterValueParameter, dayParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> NumberOfEmployee()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("NumberOfEmployee");
+        }
+    
+        public virtual ObjectResult<GetWarehouse_Result> GetWarehouse()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetWarehouse_Result>("GetWarehouse");
+        }
+    
+        public virtual ObjectResult<GetAllWareHouseById_Result> GetAllWareHouseById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetAllWareHouseById_Result>("GetAllWareHouseById", idParameter);
+        }
+    
+        public virtual int GetLastInsertedID(Nullable<int> from, Nullable<int> to)
+        {
+            var fromParameter = from.HasValue ?
+                new ObjectParameter("from", from) :
+                new ObjectParameter("from", typeof(int));
+    
+            var toParameter = to.HasValue ?
+                new ObjectParameter("to", to) :
+                new ObjectParameter("to", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetLastInsertedID", fromParameter, toParameter);
+        }
+    
+        public virtual int issue(Nullable<int> from, Nullable<int> to, Nullable<int> transfer_id, Nullable<int> product_id, Nullable<int> quantity)
+        {
+            var fromParameter = from.HasValue ?
+                new ObjectParameter("from", from) :
+                new ObjectParameter("from", typeof(int));
+    
+            var toParameter = to.HasValue ?
+                new ObjectParameter("to", to) :
+                new ObjectParameter("to", typeof(int));
+    
+            var transfer_idParameter = transfer_id.HasValue ?
+                new ObjectParameter("transfer_id", transfer_id) :
+                new ObjectParameter("transfer_id", typeof(int));
+    
+            var product_idParameter = product_id.HasValue ?
+                new ObjectParameter("product_id", product_id) :
+                new ObjectParameter("product_id", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("quantity", quantity) :
+                new ObjectParameter("quantity", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("issue", fromParameter, toParameter, transfer_idParameter, product_idParameter, quantityParameter);
         }
     }
 }

@@ -10,15 +10,10 @@
 namespace Interface.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Login
+    public partial class GetWarehouse_Result
     {
-        public string TenTK { get; set; }
-        public string Mk { get; set; }
-        public string QuyenTC { get; set; }
-        public Nullable<int> Id { get; set; }
-    
-        public virtual Employee Employee { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
     }
 }

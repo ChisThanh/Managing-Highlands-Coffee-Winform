@@ -8,15 +8,14 @@ namespace DataPlayer
        
 
         protected string connectionString = "Data Source=highlanddb.database.windows.net;" +
-                              "Initial Catalog=highland;User ID=vudance;" +
-                              "Password=E;" +
-                              "Connect Timeout=60;" +
-                              "Encrypt=True;" +
-                              "TrustServerCertificate=False;" +
-                              "TrustServerCertificate=False;" +
-                              "ApplicationIntent=ReadWrite;" +
-                              "MultiSubnetFailover=False";
-
+                                            "Initial Catalog=highland;User ID=vudance;" +
+                                            "Password=Vudang0402;" +
+                                            "Connect Timeout=60;" +
+                                            "Encrypt=True;" +
+                                            "TrustServerCertificate=False;" +
+                                            "TrustServerCertificate=False;" +
+                                            "ApplicationIntent=ReadWrite;" +
+                                            "MultiSubnetFailover=False";
         public DBContext() { }
       
     }

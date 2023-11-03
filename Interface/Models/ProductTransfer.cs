@@ -25,9 +25,8 @@ namespace Interface.Models
         public Nullable<int> to_warehouse_id { get; set; }
         public Nullable<System.DateTime> transfer_date { get; set; }
     
-        public virtual Branch Branch { get; set; }
-        public virtual Branch Branch1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductTransferDetail> ProductTransferDetails { get; set; }
+        public virtual Branch Branch { get; set; }
     }
 }

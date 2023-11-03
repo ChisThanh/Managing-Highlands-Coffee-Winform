@@ -96,7 +96,7 @@
             this.gunaSubMenu.ForeColor = System.Drawing.Color.Transparent;
             this.gunaSubMenu.Location = new System.Drawing.Point(0, 94);
             this.gunaSubMenu.Name = "gunaSubMenu";
-            this.gunaSubMenu.Size = new System.Drawing.Size(200, 606);
+            this.gunaSubMenu.Size = new System.Drawing.Size(185, 606);
             this.gunaSubMenu.TabIndex = 0;
             // 
             // btnc
@@ -115,7 +115,7 @@
             this.btnc.Location = new System.Drawing.Point(46, 544);
             this.btnc.Margin = new System.Windows.Forms.Padding(2);
             this.btnc.Name = "btnc";
-            this.btnc.Size = new System.Drawing.Size(94, 37);
+            this.btnc.Size = new System.Drawing.Size(79, 37);
             this.btnc.TabIndex = 0;
             this.btnc.Text = "Đóng";
             this.btnc.Click += new System.EventHandler(this.guna2Button1_Click_1);
@@ -128,7 +128,7 @@
             this.panel4.Location = new System.Drawing.Point(0, 314);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 152);
+            this.panel4.Size = new System.Drawing.Size(185, 152);
             this.panel4.TabIndex = 7;
             this.panel4.Visible = false;
             // 
@@ -146,7 +146,7 @@
             this.guna2Button1.Location = new System.Drawing.Point(0, 45);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-            this.guna2Button1.Size = new System.Drawing.Size(200, 45);
+            this.guna2Button1.Size = new System.Drawing.Size(185, 45);
             this.guna2Button1.TabIndex = 5;
             this.guna2Button1.Text = "Xuất kho";
             this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -166,7 +166,7 @@
             this.btns4.Location = new System.Drawing.Point(0, 0);
             this.btns4.Name = "btns4";
             this.btns4.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-            this.btns4.Size = new System.Drawing.Size(200, 45);
+            this.btns4.Size = new System.Drawing.Size(185, 45);
             this.btns4.TabIndex = 4;
             this.btns4.Text = "Danh sách kho";
             this.btns4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -189,7 +189,7 @@
             this.btn4.Location = new System.Drawing.Point(0, 269);
             this.btn4.Name = "btn4";
             this.btn4.Padding = new System.Windows.Forms.Padding(20, 9, 0, 0);
-            this.btn4.Size = new System.Drawing.Size(200, 45);
+            this.btn4.Size = new System.Drawing.Size(185, 45);
             this.btn4.TabIndex = 6;
             this.btn4.Text = "Kho";
             this.btn4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -202,7 +202,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 180);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 89);
+            this.panel3.Size = new System.Drawing.Size(185, 89);
             this.panel3.TabIndex = 5;
             // 
             // btns3
@@ -219,7 +219,7 @@
             this.btns3.Location = new System.Drawing.Point(0, 45);
             this.btns3.Name = "btns3";
             this.btns3.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-            this.btns3.Size = new System.Drawing.Size(200, 45);
+            this.btns3.Size = new System.Drawing.Size(185, 45);
             this.btns3.TabIndex = 3;
             this.btns3.Text = "Danh sách đơn";
             this.btns3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -239,7 +239,7 @@
             this.btns2.Location = new System.Drawing.Point(0, 0);
             this.btns2.Name = "btns2";
             this.btns2.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-            this.btns2.Size = new System.Drawing.Size(200, 45);
+            this.btns2.Size = new System.Drawing.Size(185, 45);
             this.btns2.TabIndex = 2;
             this.btns2.Text = "Tạo đơn";
             this.btns2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -262,7 +262,7 @@
             this.btn3.Location = new System.Drawing.Point(0, 135);
             this.btn3.Name = "btn3";
             this.btn3.Padding = new System.Windows.Forms.Padding(20, 9, 0, 0);
-            this.btn3.Size = new System.Drawing.Size(200, 45);
+            this.btn3.Size = new System.Drawing.Size(185, 45);
             this.btn3.TabIndex = 4;
             this.btn3.Text = "Nhập hàng";
             this.btn3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -274,7 +274,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 90);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 45);
+            this.panel2.Size = new System.Drawing.Size(185, 45);
             this.panel2.TabIndex = 3;
             // 
             // btns1
@@ -291,7 +291,7 @@
             this.btns1.Location = new System.Drawing.Point(0, 0);
             this.btns1.Name = "btns1";
             this.btns1.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
-            this.btns1.Size = new System.Drawing.Size(200, 45);
+            this.btns1.Size = new System.Drawing.Size(185, 45);
             this.btns1.TabIndex = 3;
             this.btns1.Text = "Quản lý nhân viên";
             this.btns1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -314,7 +314,7 @@
             this.btn2.Location = new System.Drawing.Point(0, 45);
             this.btn2.Name = "btn2";
             this.btn2.Padding = new System.Windows.Forms.Padding(20, 9, 0, 0);
-            this.btn2.Size = new System.Drawing.Size(200, 45);
+            this.btn2.Size = new System.Drawing.Size(185, 45);
             this.btn2.TabIndex = 2;
             this.btn2.Text = "Nhân viên";
             this.btn2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -337,7 +337,7 @@
             this.btn1.Location = new System.Drawing.Point(0, 0);
             this.btn1.Name = "btn1";
             this.btn1.Padding = new System.Windows.Forms.Padding(20, 7, 0, 0);
-            this.btn1.Size = new System.Drawing.Size(200, 45);
+            this.btn1.Size = new System.Drawing.Size(185, 45);
             this.btn1.TabIndex = 0;
             this.btn1.Text = "Thống kê";
             this.btn1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -349,9 +349,9 @@
             this.panelChildForm.CustomBorderColor = System.Drawing.Color.Transparent;
             this.panelChildForm.CustomBorderThickness = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelChildForm.Location = new System.Drawing.Point(200, 0);
+            this.panelChildForm.Location = new System.Drawing.Point(185, 0);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(1000, 700);
+            this.panelChildForm.Size = new System.Drawing.Size(1015, 700);
             this.panelChildForm.TabIndex = 1;
             // 
             // guna2Separator1
