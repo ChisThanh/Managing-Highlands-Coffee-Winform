@@ -41,9 +41,10 @@ namespace Interface.Models
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
     
+        /*
         public virtual ObjectResult<Top5Product_Result> Top5Product()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Top5Product_Result>("Top5Product");
-        }
+        }*/
     }
 }

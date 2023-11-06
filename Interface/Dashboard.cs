@@ -33,7 +33,7 @@ namespace Interface
 
             lbT.Text = db.OrderPDs.Sum(o => o.Total).ToString();
 
-            var list = db.Top5Product().ToList();
+            /*var list = db.Top5Product().ToList();*/
 
             gunaChart1.Legend.Position = Guna.Charts.WinForms.LegendPosition.Bottom;
             gunaChart1.XAxes.Display = false;
@@ -41,10 +41,10 @@ namespace Interface
 
             var dataset1 = new Guna.Charts.WinForms.GunaPieDataset();
 
-            foreach(var i in list)
+            /*foreach(var i in list)
             {
                 dataset1.DataPoints.Add(i.productname, (double)i.TotalQuantity);
-            }
+            }*/
             gunaChart1.Datasets.Add(dataset1);
             gunaChart1.Update();
 

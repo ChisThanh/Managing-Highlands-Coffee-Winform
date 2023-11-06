@@ -112,6 +112,9 @@
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
@@ -125,8 +128,8 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="RestSharp, Version=100.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharpSigned.105.2.3\lib\net46\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=110.2.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.110.2.0\lib\net471\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -338,6 +341,7 @@
     <Compile Include="FPurchaseOrderDetail.Designer.cs">
       <DependentUpon>FPurchaseOrderDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CalculateDay.cs" />
     <Compile Include="Helpers\Excel.cs" />
     <Compile Include="Helpers\FormatCurrency.cs" />
     <Compile Include="ImportPurchaseOrder.cs">
@@ -435,6 +439,12 @@
     <Compile Include="ControlProduct.Designer.cs">
       <DependentUpon>ControlProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalaryCalculation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalaryCalculation.Designer.cs">
+      <DependentUpon>SalaryCalculation.cs</DependentUpon>
+    </Compile>
     <Compile Include="TableSalaryEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -487,6 +497,9 @@
     </Compile>
     <EmbeddedResource Include="ControlProduct.resx">
       <DependentUpon>ControlProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryCalculation.resx">
+      <DependentUpon>SalaryCalculation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableSalaryEmployee.resx">
       <DependentUpon>TableSalaryEmployee.cs</DependentUpon>

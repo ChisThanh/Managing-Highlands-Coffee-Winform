@@ -312,5 +312,11 @@ namespace Interface
             TableSalaryEmployee tableSalaryForm = new TableSalaryEmployee();
             tableSalaryForm.Show();
         }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            SalaryCalculation salaryCalculation = new SalaryCalculation();
+            salaryCalculation.Show();
+        }
     }
 }
