@@ -63,7 +63,7 @@ namespace DataPlayer
                 try
                 {
                     await connection.OpenAsync();
-                    string sqlQuery = $"SELECT product_name , w.quantity from WarehousesDetails w join Ingredient i on w.product_id = i.product_id where w.warehouses_id = {id}";
+                    string sqlQuery = $"SELECT product_name , w.quantity from WarehousesDetails w join Ingredient i on w.product_id = i.product_id where w.warehouses_id = {id} and  w.quantity > 0 ";
                     using (SqlCommand command = new SqlCommand(sqlQuery, connection))
                     {
                         using (SqlDataReader reader = await command.ExecuteReaderAsync())

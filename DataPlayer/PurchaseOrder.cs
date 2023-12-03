@@ -22,7 +22,7 @@ namespace DataPlayer
                 {
                     await connection.OpenAsync();
 
-                    string insertQuery = "INSERT INTO PurchaseOrders (supplier_id, order_date, total) VALUES (@a, @b, @c); SELECT SCOPE_IDENTITY();";
+                    string insertQuery = "SET DATEFORMAT dmy INSERT INTO PurchaseOrders (supplier_id, order_date, total) VALUES (@a, @b, @c); SELECT SCOPE_IDENTITY();";
 
                     using (SqlCommand command = new SqlCommand(insertQuery, connection))
                     {

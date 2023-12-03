@@ -7,6 +7,12 @@ using Interface.Helpers;
 using System.Windows.Media;
 using Color = System.Drawing.Color;
 
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.IO;
+using System.Collections.Generic;
+using Guna.UI2.WinForms;
+
 namespace Interface
 {
     public partial class Dashboard : Form
@@ -44,8 +50,13 @@ namespace Interface
                 chartB.Series["Series1"].Points[1].Color = Color.FromArgb(52, 160, 164);
                 chartB.Series["Series1"].Points[2].Color = Color.FromArgb(22, 138, 173);
                 chartB.Series["Series1"].Points[3].Color = Color.FromArgb(26, 117, 159);
-                chartB.Series["Series1"].Points[4].Color = Color.FromArgb(30, 96, 145);
+                //chartB.Series["Series1"].Points[4].Color = Color.FromArgb(30, 96, 145);
             }
+            for (int i = (int)DateTime.Now.Year; i >= 2010; i--)
+            {
+                guna2ComboBox2.Items.Add(i);
+            }
+            guna2ComboBox2.SelectedIndex = 0;
 
         }
 
@@ -83,11 +94,11 @@ namespace Interface
             foreach (var item in listTOP10)
                 chartA.Series["Series1"].Points.AddXY(HP.GetLast2Words(item.Name), item.TotalAmount);
 
-           
         }
 
         private void guna2ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             ComboBox comboBox = (ComboBox)sender;
             int selectedIndex = comboBox.SelectedIndex;
             guna2ComboBox2.Items.Clear();
@@ -95,6 +106,7 @@ namespace Interface
             {
                 case 0:
                     guna2DateTimePicker1.Visible = true;
+                    guna2ComboBox2.Visible = false;
                     break;
                 case 1:
                     guna2DateTimePicker1.Visible = false;
@@ -103,6 +115,7 @@ namespace Interface
                         guna2ComboBox2.Items.Add(i);
                     }
                     guna2ComboBox2.SelectedIndex = 0;
+                    guna2ComboBox2.Visible = true;
                     break;
                 case 2:
                     guna2DateTimePicker1.Visible = false;
@@ -111,6 +124,7 @@ namespace Interface
                         guna2ComboBox2.Items.Add(i);
                     }
                     guna2ComboBox2.SelectedIndex = 0;
+                    guna2ComboBox2.Visible = true;
                     break;
             }
         }
@@ -141,5 +155,80 @@ namespace Interface
             }
             LoadData();
         }
+        private void ExportListToExcel( string folderPath)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            string fileName = "YourFileName.xlsx";
+            string filePath = Path.Combine(folderPath, fileName);
+            // Tạo một tệp Excel mới
+            bool fileExists = File.Exists(filePath);
+            FileInfo newFile = new FileInfo(filePath);
+
+            using (ExcelPackage package = new ExcelPackage(newFile))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                int rowStart = 2;
+                int colStart = 1;
+                worksheet.Cells[1, 1].Value = "Trên chi nhánh"; 
+                worksheet.Cells[1, 2].Value = "Tổng tiền";
+   
+                var t10br = db.TOP10BRANCH(type, value, date).ToList();
+                var list = db.Top5Product(type, value, date).ToList();
+                var t10m = db.TOP5MONTH().ToList();
+
+                foreach (var item in t10br)
+                { 
+                    worksheet.Cells[rowStart, colStart].Value = item.Name;
+                    worksheet.Cells[rowStart, colStart + 1].Value = item.TotalAmount;
+                    rowStart++;
+
+                }
+                colStart = 4;
+                rowStart = 1;
+                worksheet.Cells[rowStart, colStart ].Value = "Tên sản phẩm";
+                worksheet.Cells[rowStart, colStart + 1].Value = "Tổng số lượng";
+                rowStart++;
+                foreach (var item in list)
+                {
+                    worksheet.Cells[rowStart, colStart ].Value = item.productname;
+                    worksheet.Cells[rowStart, colStart + 1].Value = item.TotalQuantity;
+                    rowStart++;
+
+                }
+                rowStart = 1;
+                colStart = 8;
+                worksheet.Cells[rowStart, colStart].Value = "Tháng";
+                worksheet.Cells[rowStart, colStart + 1].Value = "Tổng số lượng";
+                rowStart++;
+
+                foreach (var item in t10m)
+                {
+                    worksheet.Cells[rowStart, colStart].Value = item.DayChart;
+                    worksheet.Cells[rowStart, colStart + 1].Value = item.TotalAmount;
+                    rowStart++;
+
+                }
+
+                worksheet.Cells.AutoFitColumns();
+                package.Save();
+            }
+        }
+       
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+
+            if (folderDialog.ShowDialog() == DialogResult.OK)
+            {
+                var folderPath = folderDialog.SelectedPath;
+               
+                ExportListToExcel( folderPath);
+                MessageBox.Show("Tạo tệp Excel thành công.");
+            }
+        }
+
+       
     }
 }

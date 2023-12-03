@@ -14,20 +14,28 @@ namespace Interface
 {
     public partial class ListPurchaseOrder : Form
     {
-        public ListPurchaseOrder()
+        List<Tuple<int, string, DateTime, int>> list = new List<Tuple<int, string, DateTime, int>>();
+
+        public  ListPurchaseOrder()
         {
             InitializeComponent();
+
+           
+
         }
 
         private async void ListPurchaseOrder_Load(object sender, EventArgs e)
         {
-            await DataGirdView();
-        }
-        public async Task DataGirdView()
-        {
             PurchaseOrder purchaseOrder = new PurchaseOrder();
             var purchaseOrders = await purchaseOrder.GetPurchaseOrdersWithSupplierName();
-            foreach (var order in purchaseOrders)
+            list = purchaseOrders;
+             DataGirdView(purchaseOrders);
+        }
+        public void DataGirdView(List<Tuple<int, string, DateTime, int>> list)
+        {
+            guna2DataGridView1.Rows.Clear();
+            guna2DataGridView1.Refresh();
+            foreach (var order in list)
             {
                 int orderId = order.Item1;
                 string supplierName = order.Item2;
@@ -52,6 +60,37 @@ namespace Interface
                 FPurchaseOrderDetail f = new FPurchaseOrderDetail(order_id);
                 f.Show();
             }
+        }
+
+        private  void guna2TextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            string str = guna2TextBox1.Text;
+            if (e.KeyCode == Keys.Enter && !string.IsNullOrEmpty(str))
+            {
+                var tmp = list.FindAll(each => ContainsWord(each.Item2, str) == true).OrderByDescending(each => each.Item3).ToList();
+                 DataGirdView(tmp);
+                guna2Button1.Visible = true;
+            }
+        }
+
+        public bool ContainsWord(string input, string searchTerm)
+        {
+            StringComparison comparison =  StringComparison.CurrentCultureIgnoreCase;
+
+            byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+            byte[] searchTermBytes = Encoding.UTF8.GetBytes(searchTerm);
+
+            string utf8Input = Encoding.UTF8.GetString(inputBytes);
+            string utf8SearchTerm = Encoding.UTF8.GetString(searchTermBytes);
+
+            return utf8Input.IndexOf(utf8SearchTerm, comparison) >= 0;
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            DataGirdView(list);
+            guna2Button1.Visible=false;
+            guna2TextBox1.Clear();
         }
     }
 }

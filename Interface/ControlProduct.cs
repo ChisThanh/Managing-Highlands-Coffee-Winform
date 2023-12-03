@@ -1,6 +1,4 @@
-﻿using DevExpress.Internal.WinApi.Windows.UI.Notifications;
-using DevExpress.Utils.Extensions;
-using Guna.UI2.WinForms;
+﻿using Guna.UI2.WinForms;
 using Interface.Models;
 using System;
 using System.Collections.Generic;
