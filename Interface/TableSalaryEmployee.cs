@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Interface.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,9 +24,13 @@ namespace Interface
 
         private void TableSalaryEmployee_Load(object sender, EventArgs e)
         {
-            guna2ComboBox1.SelectedItem = "2023";
-            guna2ComboBox2.SelectedItem = "8";
+            DateTime currentDate = DateTime.Now;
+            int currentYear = currentDate.Year;
+            int currentMonth = currentDate.Month;
+            guna2ComboBox1.SelectedItem = currentYear.ToString();
+            guna2ComboBox2.SelectedItem = currentMonth.ToString();
             dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
 
 
             SqlConnection connection = new SqlConnection(conStr);
@@ -33,7 +38,7 @@ namespace Interface
             try
             {
                 connection.Open();
-                string query = "SELECT * FROM TableSalary WHERE Year = 2023 AND Month = 8";
+                string query = $"SELECT * FROM TableSalary WHERE Year = {currentYear} AND Month = {currentMonth}";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 DataTable table = new DataTable();
@@ -51,6 +56,33 @@ namespace Interface
             }
 
 
+        }
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            int columnIndex = e.ColumnIndex;
+            string newValue = dataGridView1.Rows[rowIndex].Cells[columnIndex].Value.ToString();
+
+            int recordId = int.Parse(dataGridView1.Rows[rowIndex].Cells["Id"].Value.ToString());
+            string columnName = dataGridView1.Columns[columnIndex].Name;
+
+
+            using (SqlConnection connection = new SqlConnection(conStr))
+            {
+                connection.Open();
+
+                string updateQuery = $"UPDATE TableSalary SET {columnName} = @NewValue WHERE ID = @RecordId";
+                using (SqlCommand cmd = new SqlCommand(updateQuery, connection))
+                {
+
+                    cmd.Parameters.AddWithValue("@NewValue", newValue);
+                    cmd.Parameters.AddWithValue("@RecordId", recordId);
+
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+                }
+
+            }
         }
 
 
@@ -121,11 +153,44 @@ namespace Interface
         {
             SqlConnection connection = new SqlConnection(conStr);
 
+
+            string selectedYear = guna2ComboBox1.SelectedItem.ToString();
+            string selectedMonth = guna2ComboBox2.SelectedItem.ToString();
+
+            string query = $"SELECT COUNT(*) FROM TableSalary WHERE Year = {selectedYear} AND Month = {selectedMonth}";
+
+            int recordCount = 0;
+
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                recordCount = (int)cmd.ExecuteScalar();
+
+                if (recordCount != 0)
+                {
+                    MessageBox.Show("Kỳ công đã tồn tại");
+                    return;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu: " + ex.Message);
+                return;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
             var listEmployee = GetEmployees();
             if (listEmployee.Count == 0)
             {
                 return;
             }
+
             foreach (var item in listEmployee)
             {
                 List<string> listDay = new List<string>();
@@ -166,7 +231,7 @@ namespace Interface
                 {
                     if (connection.State == ConnectionState.Closed)
                     {
-                        connection.Open(); // Mở kết nối chỉ khi nó đã đóng.
+                        connection.Open();
                     }
 
                     command.Parameters.AddWithValue("@Name", item.Name);
@@ -184,6 +249,34 @@ namespace Interface
         private void guna2Button2_Click(object sender, EventArgs e)
         {
 
+            string selectedYear = guna2ComboBox1.SelectedItem.ToString();
+            string selectedMonth = guna2ComboBox2.SelectedItem.ToString();
+
+
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+
+
+            SqlConnection connection = new SqlConnection(conStr);
+
+            try
+            {
+                connection.Open();
+                string query = $"SELECT * FROM TableSalary WHERE Year = {selectedYear} AND Month = {selectedMonth}";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+                dataGridView1.DataSource = table;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi kết nối đến cơ sở dữ liệu: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
         private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -199,6 +292,36 @@ namespace Interface
             //        e.CellStyle.BackColor = Color.OrangeRed;
             //    }
             //}
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private async void guna2Button3_Click(object sender, EventArgs e)
+        {
+            string selectedYear = guna2ComboBox1.SelectedItem.ToString();
+            string selectedMonth = guna2ComboBox2.SelectedItem.ToString();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    await connection.OpenAsync();
+
+                    string query = $"SELECT * FROM TableSalary WHERE Year = {selectedYear} AND Month = {selectedMonth}";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    await Task.Run(() => adapter.Fill(dataTable));
+
+                    Excel excel = new Excel();
+                    excel.ExportFileTimeKeeping(dataTable, "Bảng chấm công", "Bảng chấm công");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
     }
 }
