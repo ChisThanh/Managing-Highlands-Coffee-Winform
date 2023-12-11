@@ -62,10 +62,11 @@ namespace Interface
 
         private void LoadData()
         {
+            var tonkho = db.Database.SqlQuery<double>("SELECT dbo.sltonkho()").FirstOrDefault();
             var Quantity = db.FilterOrdersQuantity(type, value, date).First().ToString() ?? "0";
             var Total = db.FilterOrdersTotal(type, value, date).First() ?? 0;
-
-            if(Quantity == "0")
+            label7.Text = tonkho.ToString();
+            if (Quantity == "0")
             {
                 MessageBox.Show("Doanh số trống");
                 return;

@@ -43,6 +43,7 @@ namespace Interface
                 guna2DataGridView1.Rows[rowIndex].Cells["Column2"].Value = item.Item2;
                 guna2DataGridView1.Rows[rowIndex].Cells["Column3"].Value = item.Item3;
             }
+
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)

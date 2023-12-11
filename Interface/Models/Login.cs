@@ -14,10 +14,10 @@ namespace Interface.Models
     
     public partial class Login
     {
-        public string TenTK { get; set; }
+        public string TenTk { get; set; }
         public string Mk { get; set; }
-        public string QuyenTC { get; set; }
-        public Nullable<int> Id { get; set; }
+        public Nullable<int> QuyenTC { get; set; }
+        public Nullable<int> Id_Employee { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

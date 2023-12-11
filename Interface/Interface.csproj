@@ -170,6 +170,24 @@
     <Compile Include="Employee.Designer.cs">
       <DependentUpon>Employee.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductTransferDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductTransferDetails.Designer.cs">
+      <DependentUpon>frmProductTransferDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProductTransfers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProductTransfers.Designer.cs">
+      <DependentUpon>frmProductTransfers.cs</DependentUpon>
+    </Compile>
     <Compile Include="FWarehousesDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +208,18 @@
     </Compile>
     <Compile Include="ImportPurchaseOrder.Designer.cs">
       <DependentUpon>ImportPurchaseOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmIngredient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIngredient.Designer.cs">
+      <DependentUpon>frmIngredient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IngredientEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngredientEdit.Designer.cs">
+      <DependentUpon>IngredientEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="ListWarehouses.cs">
       <SubType>Form</SubType>
@@ -316,6 +346,15 @@
     <EmbeddedResource Include="Employee.resx">
       <DependentUpon>Employee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductTransferDetails.resx">
+      <DependentUpon>frmProductTransferDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProductTransfers.resx">
+      <DependentUpon>frmProductTransfers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FWarehousesDetail.resx">
       <DependentUpon>FWarehousesDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +363,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImportPurchaseOrder.resx">
       <DependentUpon>ImportPurchaseOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIngredient.resx">
+      <DependentUpon>frmIngredient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IngredientEdit.resx">
+      <DependentUpon>IngredientEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListWarehouses.resx">
       <DependentUpon>ListWarehouses.cs</DependentUpon>
@@ -378,6 +423,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\test.png" />
+    <Content Include="images\Edit_1.png" />
     <Content Include="images\packing.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

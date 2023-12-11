@@ -29,7 +29,6 @@ namespace Interface.Models
     
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Ingredient> Ingredients { get; set; }
-        public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<OrderPD> OrderPDs { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
@@ -42,6 +41,7 @@ namespace Interface.Models
         public virtual DbSet<TableSalary> TableSalaries { get; set; }
         public virtual DbSet<WarehousesDetail> WarehousesDetails { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
     
         public virtual ObjectResult<Top5Product_Result> Top5Product(string filterType, Nullable<int> filterValue, Nullable<System.DateTime> day)
         {

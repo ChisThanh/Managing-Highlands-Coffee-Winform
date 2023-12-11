@@ -15,6 +15,7 @@ namespace Interface
         }
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
+            Application.Exit();
             this.Close();
         }
         private void customSizePanel()
@@ -90,6 +91,16 @@ namespace Interface
             openChildForm(new ListWarehouses());
         }
         private void guna2Button1_Click_2(object sender, EventArgs e)
+        {
+            openChildForm(new frmProductTransfers());
+        }
+
+        private void guna2Button2_Click_1(object sender, EventArgs e)
+        {
+            openChildForm(new frmIngredient());
+        }
+
+        private void guna2Button3_Click_1(object sender, EventArgs e)
         {
             openChildForm(new ProductTransfers());
         }

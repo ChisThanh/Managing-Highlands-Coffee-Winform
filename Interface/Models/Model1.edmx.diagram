@@ -7,7 +7,6 @@
       <Diagram DiagramId="784b1b5a85d249aa826bc6e84f9eb09d" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="highlandModel.Employee" Width="1.5" PointX="0.75" PointY="2.25" />
         <EntityTypeShape EntityType="highlandModel.Ingredient" Width="1.5" PointX="3" PointY="14.75" />
-        <EntityTypeShape EntityType="highlandModel.Login" Width="1.5" PointX="5.75" PointY="7.875" />
         <EntityTypeShape EntityType="highlandModel.OrderDetail" Width="1.5" PointX="5.25" PointY="4.625" />
         <EntityTypeShape EntityType="highlandModel.OrderPD" Width="1.5" PointX="3" PointY="4.125" />
         <EntityTypeShape EntityType="highlandModel.Payment" Width="1.5" PointX="0.75" PointY="9.25" />
@@ -28,12 +27,13 @@
         <AssociationConnector Association="highlandModel.FK_ProductTransferDetails_ProductTransfers" />
         <AssociationConnector Association="highlandModel.FK_PurchaseOrderDetails_PurchaseOrders" />
         <AssociationConnector Association="highlandModel.FK_PurchaseOrders_Suppliers" />
-        <AssociationConnector Association="highlandModel.FK_Login_ID" />
         <EntityTypeShape EntityType="highlandModel.Branch" Width="1.5" PointX="0.625" PointY="6.375" />
         <AssociationConnector Association="highlandModel.FK_OrderPD_Branch" />
         <AssociationConnector Association="highlandModel.FK_ProductTransfers_Branch" />
         <AssociationConnector Association="highlandModel.FK_ProductTransfers_Branch1" />
         <AssociationConnector Association="highlandModel.FK_WarehousesDetails_Branch" />
+        <EntityTypeShape EntityType="highlandModel.Login" Width="1.5" PointX="3" PointY="18.5" />
+        <AssociationConnector Association="highlandModel.Fk_Login_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

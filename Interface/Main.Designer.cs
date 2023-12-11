@@ -33,6 +33,7 @@
             this.border = new Guna.UI2.WinForms.Guna2BorderlessForm(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.gunaSubMenu = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.btnc = new Guna.UI2.WinForms.Guna2Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
@@ -48,6 +49,7 @@
             this.btn1 = new Guna.UI2.WinForms.Guna2Button();
             this.panelChildForm = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.gunaSubMenu.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -81,6 +83,7 @@
             // gunaSubMenu
             // 
             this.gunaSubMenu.AutoScroll = true;
+            this.gunaSubMenu.Controls.Add(this.guna2Button2);
             this.gunaSubMenu.Controls.Add(this.btnc);
             this.gunaSubMenu.Controls.Add(this.panel4);
             this.gunaSubMenu.Controls.Add(this.btn4);
@@ -98,6 +101,29 @@
             this.gunaSubMenu.Name = "gunaSubMenu";
             this.gunaSubMenu.Size = new System.Drawing.Size(185, 606);
             this.gunaSubMenu.TabIndex = 0;
+            // 
+            // guna2Button2
+            // 
+            this.guna2Button2.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.Image = global::Interface.Properties.Resources.icons8_warehouse_50;
+            this.guna2Button2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button2.ImageOffset = new System.Drawing.Point(20, 0);
+            this.guna2Button2.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button2.Location = new System.Drawing.Point(0, 458);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.Padding = new System.Windows.Forms.Padding(20, 9, 0, 0);
+            this.guna2Button2.Size = new System.Drawing.Size(185, 45);
+            this.guna2Button2.TabIndex = 8;
+            this.guna2Button2.Text = "Nguyên liệu";
+            this.guna2Button2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click_1);
             // 
             // btnc
             // 
@@ -122,13 +148,14 @@
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.guna2Button3);
             this.panel4.Controls.Add(this.guna2Button1);
             this.panel4.Controls.Add(this.btns4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 314);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(185, 152);
+            this.panel4.Size = new System.Drawing.Size(185, 144);
             this.panel4.TabIndex = 7;
             this.panel4.Visible = false;
             // 
@@ -148,7 +175,7 @@
             this.guna2Button1.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
             this.guna2Button1.Size = new System.Drawing.Size(185, 45);
             this.guna2Button1.TabIndex = 5;
-            this.guna2Button1.Text = "Xuất kho";
+            this.guna2Button1.Text = "Danh sách vận chuyển";
             this.guna2Button1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click_2);
             // 
@@ -362,6 +389,26 @@
             this.guna2Separator1.Size = new System.Drawing.Size(150, 8);
             this.guna2Separator1.TabIndex = 0;
             // 
+            // guna2Button3
+            // 
+            this.guna2Button3.BorderColor = System.Drawing.Color.White;
+            this.guna2Button3.CustomBorderColor = System.Drawing.Color.White;
+            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2Button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button3.ForeColor = System.Drawing.Color.White;
+            this.guna2Button3.Location = new System.Drawing.Point(0, 90);
+            this.guna2Button3.Name = "guna2Button3";
+            this.guna2Button3.Padding = new System.Windows.Forms.Padding(38, 0, 0, 0);
+            this.guna2Button3.Size = new System.Drawing.Size(185, 45);
+            this.guna2Button3.TabIndex = 6;
+            this.guna2Button3.Text = "Xuất kho";
+            this.guna2Button3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.guna2Button3.Click += new System.EventHandler(this.guna2Button3_Click_1);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,5 +455,7 @@
         private Guna.UI2.WinForms.Guna2Button btnc;
         private Guna.UI2.WinForms.Guna2Separator guna2Separator1;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
     }
 }
