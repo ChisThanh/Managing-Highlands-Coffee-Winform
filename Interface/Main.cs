@@ -15,8 +15,10 @@ namespace Interface
         }
         private void guna2Button1_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
-            this.Close();
+            if (Application.OpenForms != null && Application.OpenForms.Count > 0)
+            {
+                Application.Exit();
+            }
         }
         private void customSizePanel()
         {

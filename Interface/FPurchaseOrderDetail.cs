@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using DataPlayer;
+using Interface.Helpers;
 using OfficeOpenXml;
 using static OfficeOpenXml.ExcelErrorValue;
 
@@ -35,15 +36,17 @@ namespace Interface
                 MessageBox.Show("Không có sản phẩm nào!");
                 this.Close();
             }
-
+            int sum = 0;
             foreach ( var item in list )
             {
                 int rowIndex = guna2DataGridView1.Rows.Add();
                 guna2DataGridView1.Rows[rowIndex].Cells["Column1"].Value = item.Item1;
                 guna2DataGridView1.Rows[rowIndex].Cells["Column2"].Value = item.Item2;
                 guna2DataGridView1.Rows[rowIndex].Cells["Column3"].Value = item.Item3;
+                sum += item.Item2 * (int)item.Item3;
             }
 
+            textBox1.Text = FormatCurrency.FormatAmount(sum);
         }
 
         private void guna2Button1_Click(object sender, EventArgs e)
