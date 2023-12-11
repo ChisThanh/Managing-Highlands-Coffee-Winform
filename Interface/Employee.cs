@@ -29,13 +29,14 @@ namespace Interface
         }
         private async void Employee_Load(object sender, EventArgs e)
         {
+            guna2TextBox4.Text = "1";
             try
             {
                 using (SqlConnection connection = new SqlConnection(conStr))
                 {
                     await connection.OpenAsync();
 
-                    string query = "SELECT top 3 * FROM Employee";
+                    string query = "SELECT top 10 * FROM Employee";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable dataTable = new DataTable();
                     await Task.Run(() => adapter.Fill(dataTable));
@@ -145,10 +146,10 @@ namespace Interface
                 {
                     await connection.OpenAsync();
 
-                    string query = "SELECT * FROM Employee";
+                    string query = "SELECT top 10 * FROM Employee";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                     DataTable dataTable = new DataTable();
-                    await Task.Run(() => adapter.Fill(dataTable)); 
+                    await Task.Run(() => adapter.Fill(dataTable));
 
                     guna2DataGridView1.Invoke((Action)(() =>
                     {
@@ -173,6 +174,8 @@ namespace Interface
             }
         }
         private int selectedEmployeeId;
+
+
         private void guna2Button2_Click(object sender, EventArgs e)
         {
             try
@@ -193,7 +196,7 @@ namespace Interface
 
                             MessageBox.Show("Dữ liệu đã xóa.");
 
-                             ReloadData();
+                            ReloadData();
                         }
                     }
                 }
@@ -311,6 +314,114 @@ namespace Interface
         {
             TableSalaryEmployee tableSalaryForm = new TableSalaryEmployee();
             tableSalaryForm.Show();
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            SalaryCalculation salaryCalculation = new SalaryCalculation();
+            salaryCalculation.Show();
+        }
+
+        private async void guna2Button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    await connection.OpenAsync();
+
+                    int page = int.Parse(guna2TextBox4.Text)+1; 
+
+                    int rowsPerPage = 10;
+
+                    int offset = (page - 1) * rowsPerPage;
+                    string query = $"SELECT * FROM Employee ORDER BY ID OFFSET {offset} ROWS FETCH NEXT {rowsPerPage} ROWS ONLY";
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    await Task.Run(() => adapter.Fill(dataTable));
+
+                    guna2DataGridView1.Invoke((Action)(() =>
+                    {
+                        guna2DataGridView1.DataSource = dataTable;
+                        guna2DataGridView1.Columns["Avatar"].Visible = false;
+
+                        guna2DataGridView1.Columns["Name"].HeaderText = "Tên";
+                        guna2DataGridView1.Columns["Age"].HeaderText = "Tuổi";
+                        guna2DataGridView1.Columns["CreatedAt"].HeaderText = "Ngày vào làm";
+                        guna2DataGridView1.Columns["role"].HeaderText = "Chức vụ";
+
+                        foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                        {
+                            column.ReadOnly = true;
+                        }
+                    }));
+                    guna2TextBox4.Text = page.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+
+        }
+
+        private void guna2TextBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void guna2Button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conStr))
+                {
+                    await connection.OpenAsync();
+
+                    int page = int.Parse(guna2TextBox4.Text);
+                    if (page == 1)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        page -= 1;
+                    }
+
+                    int rowsPerPage = 10;
+
+                    int offset = (page - 1) * rowsPerPage;
+                    string query = $"SELECT * FROM Employee ORDER BY ID OFFSET {offset} ROWS FETCH NEXT {rowsPerPage} ROWS ONLY";
+
+
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    await Task.Run(() => adapter.Fill(dataTable));
+
+                    guna2DataGridView1.Invoke((Action)(() =>
+                    {
+                        guna2DataGridView1.DataSource = dataTable;
+                        guna2DataGridView1.Columns["Avatar"].Visible = false;
+
+                        guna2DataGridView1.Columns["Name"].HeaderText = "Tên";
+                        guna2DataGridView1.Columns["Age"].HeaderText = "Tuổi";
+                        guna2DataGridView1.Columns["CreatedAt"].HeaderText = "Ngày vào làm";
+                        guna2DataGridView1.Columns["role"].HeaderText = "Chức vụ";
+
+                        foreach (DataGridViewColumn column in guna2DataGridView1.Columns)
+                        {
+                            column.ReadOnly = true;
+                        }
+                    }));
+                    guna2TextBox4.Text = page.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
     }
 }

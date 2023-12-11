@@ -49,6 +49,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v23.1, Version=23.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Data.23.1.6\lib\net452\DevExpress.Data.v23.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v23.1, Version=23.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Xpo.23.1.6\lib\net452\DevExpress.Xpo.v23.1.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -75,6 +81,10 @@
     </Reference>
     <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
@@ -200,6 +210,7 @@
     <Compile Include="FPurchaseOrderDetail.Designer.cs">
       <DependentUpon>FPurchaseOrderDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CalculateDay.cs" />
     <Compile Include="Helpers\Excel.cs" />
     <Compile Include="Helpers\FormatCurrency.cs" />
     <Compile Include="Helpers\HP.cs" />
@@ -328,6 +339,12 @@
     <Compile Include="ControlProduct.Designer.cs">
       <DependentUpon>ControlProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalaryCalculation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SalaryCalculation.Designer.cs">
+      <DependentUpon>SalaryCalculation.cs</DependentUpon>
+    </Compile>
     <Compile Include="TableSalaryEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -396,6 +413,9 @@
     </Compile>
     <EmbeddedResource Include="ControlProduct.resx">
       <DependentUpon>ControlProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalaryCalculation.resx">
+      <DependentUpon>SalaryCalculation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableSalaryEmployee.resx">
       <DependentUpon>TableSalaryEmployee.cs</DependentUpon>
