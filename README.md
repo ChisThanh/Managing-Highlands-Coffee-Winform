@@ -7,5 +7,6 @@
 - Quản lý kho
 - CRUD đầy đủ các bảng
 - Tìm kiếm
-
+## Database
+- SQL server
 
